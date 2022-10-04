@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NewShippingApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="collapse navbar-collapse d-flex align-items-center flex-wrap" id="navbarNav">
+          <%= link_to('Fretes Tatooine', root_path, class:"navbar-brand mb-0 h1") %>
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <%= link_to('Veículos', root_path, class:'nav-link') %>
+              </li>
+              <li class="nav-item">
+                <%=link_to('Modalidades', root_path, class:'nav-link') %>
+              </li>
+              <li class="nav-item">
+                <%= link_to('OS', root_path, class:'nav-link') %>
+              </li>
+      </nav>
+    </header>
+    <main>
+      <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

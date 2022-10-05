@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'user visit index' do
-  it 'and see navbar' do
+describe 'usuario visita a tela inicial' do
+  it 'e vê a navbar' do
   visit(root_path)
   expect(page).to have_content 'Fretes Tatooine'
   expect(page).to have_content 'Veículos'
@@ -9,3 +9,5 @@ describe 'user visit index' do
   expect(page).to have_content 'OS'
   end
 end
+
+

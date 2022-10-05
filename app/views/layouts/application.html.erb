@@ -25,6 +25,27 @@
               <li class="nav-item">
                 <%= link_to('OS', root_path, class:'nav-link') %>
               </li>
+            </ul>
+        </div>
+        <% if user_signed_in? %>
+            <div class="d-flex align-items-center">
+              <%= bootstrap_form_with(url: '/orders/search', method: :get, control_col: "col-sm-3") do |form| %>
+              <%= form.text_field :search, hide_label: true, append: form.primary('Buscar'), placeholder: 'Buscar Pedido' %>
+              </form>
+            <% end %>
+            </div>
+            <div class="navbar-nav nav-link d-flex justify-content-end">
+              <%= current_user.description %>
+            </div>
+            <div class="navbar-nav d-flex justify-content-end">
+              <%= button_to 'Sair', destroy_user_session_path, method: :delete, class:'nav-link btn btn-link' %>
+            </div>
+          <% else %>
+            <div class="navbar-nav d-flex justify-content-end">
+              <%= link_to('Entrar', new_user_session_path, class:'nav-link') %>
+            </div>
+          <% end %>
+        </div>
       </nav>
     </header>
     <main>

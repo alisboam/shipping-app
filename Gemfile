@@ -45,7 +45,8 @@ gem "bootsnap", require: false
 gem 'bootstrap'
 gem 'bootstrap_form'
 gem 'devise'
-gem 'email_validator'
+gem 'rails-i18n'
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"

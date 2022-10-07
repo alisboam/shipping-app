@@ -1,0 +1,34 @@
+<% if(@vehicle.errors.any?) %>
+	<div class="alert alert-danger" role="alert">
+		<p> A validação falhou: </p>
+		<ul>
+			<% @vehicle.errors.full_messages.each do |message| %>
+			<li> <%= message %> </li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= bootstrap_form_with(model: @vehicle, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |form| %>
+	<div>
+		<%= form.text_field :license_plate, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :brand, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :model, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :year, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :capacity, required: true %>
+	</div>
+	<div>
+		<%= form.select(:status, @select_status) %>
+	</div>
+  <div> 
+		<%= form.submit 'Enviar', class: "btn btn-success" %>
+	</div>
+<% end %>

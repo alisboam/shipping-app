@@ -43,6 +43,6 @@ describe 'usuário faz login' do
       expect(page).to have_link 'Entrar'
       expect(page).not_to have_content 'mary@sistemadefrete.com.br'
     end
-    expect(page).to have_content 'Logout efetuado com sucesso.'
+    expect(page).to have_content 'Para continuar, faça login ou registre-se.'
   end
 end

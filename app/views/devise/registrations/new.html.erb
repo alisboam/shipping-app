@@ -1,4 +1,8 @@
-<h2>Crie sua conta</h2>
+<h2>Cadastre um usuário</h2>
+<% if flash[:alert] %>
+      <div class="notice"><%= flash[:alert] %></div>
+<% end %>
+    
 
 <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -23,7 +27,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Criar conta" %>
+    <%= f.submit "Cadastrar" %>
   </div>
 <% end %>
 

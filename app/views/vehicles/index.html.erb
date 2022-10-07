@@ -1,0 +1,38 @@
+<h2>Todos os <%=Vehicle.model_name.human %></h2>
+<% if @vehicles.any? %>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Vehicle.human_attribute_name(:model) %></th>
+          <th><%= Vehicle.human_attribute_name(:brand) %></th>
+          <th><%= Vehicle.human_attribute_name(:year) %></th>
+          <th><%= Vehicle.human_attribute_name(:license_plate) %></th>
+          <th><%= Vehicle.human_attribute_name(:capacity) %> em gramas</th>
+          <th><%= Vehicle.human_attribute_name(:status) %></th>
+        </tr>
+      </thead>
+  <% @vehicles.each do |vehicle| %>
+    <tbody>
+  <tr>
+    <tr>
+      <td><%= vehicle.model %></td>
+      <td><%= vehicle.brand %></td>
+      <td><%= vehicle.year %></td>
+      <td><%= vehicle.license_plate %></td>
+      <td><%= vehicle.capacity %></td>
+      <td><%= vehicle.status %></td>
+    </tr>
+</tbody>
+  <% end %>
+   </table>
+    <div>
+<% else %>
+  <span> 'Não existem pedidos cadastrados' </span>
+<% end %>
+    
+</div>
+
+ <% if user_signed_in? and current_user.admin? %>
+    <%=link_to('Cadastrar Veículo', new_vehicle_path, class: "btn btn-success") %>
+<% end %>

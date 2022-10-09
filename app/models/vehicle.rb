@@ -1,4 +1,5 @@
 class Vehicle < ApplicationRecord
+  belongs_to :modality
 
   enum status: { ativo: 0, inativo: 1 }  
   validates :license_plate, uniqueness: true

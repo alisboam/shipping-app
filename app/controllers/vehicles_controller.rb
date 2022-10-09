@@ -1,24 +1,29 @@
 class VehiclesController < ApplicationController
-  before_action :set_check_user, only: [:new, :create]
+  before_action :set_check_user, only: [:new, :create, :edit, :update]
+
   def index
     @vehicles = Vehicle.all
   end
 
   def new
-    set_check_user
+    @modality = Modality.find(params[:id])
   end
 
   def create
-    set_check_user
     @vehicle = Vehicle.create(set_params)
     if @vehicle.valid?
-      redirect_to vehicles_path, notice: 'Veículo cadastrado com sucesso'
+      redirect_to modality_path(set_params[:modality_id]), notice: "Veículo #{@vehicle.model} de placa: #{@vehicle.license_plate} cadastrado com sucesso"
     else
+      @modality = Modality.find(set_params[:modality_id])
       flash.now[:notice] = 'Não foi possível cadastrar o veículo'
       render 'new'
     end
   end
-  
+
+  def edit
+    @vehicle = Vehicle.find(params[:id])
+    @modality = Modality.find(params[:id])
+  end
   
   private
   def select_status
@@ -27,7 +32,7 @@ class VehiclesController < ApplicationController
   
   def set_params
     params.require(:vehicle).permit(:license_plate, :brand, :model,                                                   
-                                    :year, :capacity, :status)
+                                    :year, :capacity, :status, :modality_id)
   end
   
   def set_check_user

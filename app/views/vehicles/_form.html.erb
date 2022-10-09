@@ -28,6 +28,9 @@
 	<div>
 		<%= form.select(:status, @select_status) %>
 	</div>
+	<div>
+		<%= form.hidden_field :modality_id, :value => @modality.id %>
+	</div>
   <div> 
 		<%= form.submit 'Enviar', class: "btn btn-success" %>
 	</div>

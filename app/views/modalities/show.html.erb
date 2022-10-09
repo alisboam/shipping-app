@@ -1,0 +1,60 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= Modality.human_attribute_name(:name) %></th>
+        <th><%= Modality.human_attribute_name(:min_distance) %></th>
+        <th><%= Modality.human_attribute_name(:max_distance) %></th>
+        <th><%= Modality.human_attribute_name(:min_weight) %></th>
+        <th><%= Modality.human_attribute_name(:max_weight) %></th>
+        <th><%= Modality.human_attribute_name(:tax) %></th>
+        <th><%= Modality.human_attribute_name(:status) %></th>
+      </tr>
+    </thead>
+      <tbody>
+          <tr>
+            <td><%= @modality.name %></td>
+            <td><%= @modality.min_distance %></td>
+            <td><%= @modality.max_distance %></td>
+            <td><%= @modality.min_weight %></td>
+            <td><%= @modality.max_weight %></td>
+            <td><%= @modality.tax %></td>
+            <td><%= @modality.status %></td>
+          </tr>
+      </tbody>
+  </table>
+  <%=link_to('Adicionar Veículos', new_vehicle_path(:id => @modality.id), class: "btn btn-success") %>
+<div>
+ h2
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Vehicle.human_attribute_name(:model) %></th>
+          <th><%= Vehicle.human_attribute_name(:brand) %></th>
+          <th><%= Vehicle.human_attribute_name(:year) %></th>
+          <th><%= Vehicle.human_attribute_name(:license_plate) %></th>
+          <th><%= Vehicle.human_attribute_name(:capacity) %> em gramas</th>
+          <th><%= Vehicle.human_attribute_name(:status) %></th>
+          <% if current_user.admin? %>
+            <th>Editar</th>
+          <% end %>
+        </tr>
+      </thead>
+      <% @modality.vehicles.each do |vehicle| %>
+        <tbody>
+            <tr>
+              <td><%= vehicle.model %></td>
+              <td><%= vehicle.brand %></td>
+              <td><%= vehicle.year %></td>
+              <td><%= vehicle.license_plate %></td>
+              <td><%= vehicle.capacity %></td>
+              <td><%= vehicle.status %></td>
+              <% if current_user.admin? %>
+                <td><%=link_to('Editar',  edit_vehicle_path(:modality_id, @vehicle), class: "btn btn-success") %></td>
+              <% end %>
+            </tr>
+        </tbody>
+        <% end %>
+    </table>
+  <div>

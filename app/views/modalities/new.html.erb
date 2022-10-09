@@ -1,0 +1,25 @@
+<h2>Cadastrar Modalidade</h2>
+<%= @modality %>
+<%= bootstrap_form_with(model: @modality, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |form| %>
+	<div>
+		<%= form.text_field :name, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :min_distance, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :max_distance, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :min_weight, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :max_weight, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :tax, required: true %>
+	</div>
+  <div> 
+		<%= form.submit 'Enviar', class: "btn btn-primary" %>
+	</div>
+<% end %>

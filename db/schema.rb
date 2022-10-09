@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_06_193735) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_08_223629) do
+  create_table "modalities", force: :cascade do |t|
+    t.string "name"
+    t.integer "min_distance"
+    t.integer "max_distance"
+    t.integer "min_weight"
+    t.integer "max_weight"
+    t.integer "status"
+    t.integer "tax"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prices_by_distances", force: :cascade do |t|
+    t.integer "min_distance"
+    t.integer "max_distance"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "prices_by_weights", force: :cascade do |t|
+    t.integer "min_weight"
+    t.integer "max_weight"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -34,6 +62,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_193735) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "modality_id", null: false
+    t.index ["modality_id"], name: "index_vehicles_on_modality_id"
   end
 
+  add_foreign_key "vehicles", "modalities"
 end

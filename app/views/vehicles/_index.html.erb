@@ -1,0 +1,32 @@
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Vehicle.human_attribute_name(:model) %></th>
+          <th><%= Vehicle.human_attribute_name(:brand) %></th>
+          <th><%= Vehicle.human_attribute_name(:year) %></th>
+          <th><%= Vehicle.human_attribute_name(:license_plate) %></th>
+          <th><%= Vehicle.human_attribute_name(:capacity) %> em gramas</th>
+          <th><%= Vehicle.human_attribute_name(:status) %></th>
+          <% if current_user.admin? %>
+            <th>Editar</th>
+          <% end %>
+        </tr>
+      </thead>
+      <% @vehicles.each do |vehicle| %>
+        <tbody>
+            <tr>
+              <td><%= vehicle.model %></td>
+              <td><%= vehicle.brand %></td>
+              <td><%= vehicle.year %></td>
+              <td><%= vehicle.license_plate %></td>
+              <td><%= vehicle.capacity %></td>
+              <td><%= vehicle.status %></td>
+              <% if current_user.admin? %>
+                <td><%=link_to('Editar',  edit_vehicle_path(:modality_id, @vehicle), class: "btn btn-success") %></td>
+              <% end %>
+            </tr>
+        </tbody>
+        <% end %>
+    </table>
+  <div>

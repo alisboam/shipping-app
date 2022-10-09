@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      prices_by_weight: 'Preço por Peso'
+    attributes:
+      prices_by_weight:
+        min_weight: "Peso Mínimo"
+        max_weight: "Peso Máximo"
+        price: "Preço por Kg"
+        

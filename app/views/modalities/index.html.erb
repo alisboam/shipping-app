@@ -1,0 +1,47 @@
+
+<% if user_signed_in? and current_user.admin? %>
+      <%=link_to('Cadastrar Modalidade',  new_modality_path, class: "btn btn-success") %>
+<% end %>
+
+<h2>Todos as Modalidades</h2>
+<% if @modalities.any? %>
+  <div class="table-responsive">
+    <table class="table">
+			<thead>
+				<tr>
+					<th><%= Modality.human_attribute_name(:name) %></th>
+					<th><%= Modality.human_attribute_name(:min_distance) %></th>
+					<th><%= Modality.human_attribute_name(:max_distance) %></th>
+					<th><%= Modality.human_attribute_name(:min_weight) %></th>
+					<th><%= Modality.human_attribute_name(:max_weight) %></th>
+					<th><%= Modality.human_attribute_name(:tax) %></th>
+					<th><%= Modality.human_attribute_name(:status) %></th>
+					<% if current_user.admin? %>
+					<th>Adicionar Veículo</th>
+					<% end %>
+				</tr>
+			</thead>
+			<% @modalities.each do |modality| %>
+				<tbody>
+					<tr>
+					<td><%=link_to(modality.name, modality_path(modality.id)) %></td>
+					<td><%= modality.min_distance %></td>
+					<td><%= modality.max_distance %></td>
+					<td><%= modality.min_weight %></td>
+					<td><%= modality.max_weight %></td>
+					<td><%= modality.tax %></td>
+					<td><%= modality.status %></td>
+					<% if current_user.admin? %>
+						<th><%=link_to('Adicionar Veículos', modality_path(modality.id), class: "btn btn-success") %></th>
+					<% end %>
+					</tr>
+				</tbody>
+			<% end %>
+    </table>
+<% else %>
+  <span> 'Não existem modalidades cadastradas' </span>
+<% end %>
+<div>
+   
+
+

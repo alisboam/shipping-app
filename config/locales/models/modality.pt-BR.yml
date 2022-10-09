@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      modality: 'Modalidade'
+    attributes:
+      modality:
+        name: "Nome da Modalidade"
+        min_distance: "Distância Mínima"
+        max_distance: "Distância Máxima"
+        min_weight: "Peso Mínimo"
+        max_weight: "Peso Máximo"
+        tax: "Taxa fixa"
+        

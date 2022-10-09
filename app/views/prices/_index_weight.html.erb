@@ -1,0 +1,28 @@
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= PricesByWeight.human_attribute_name(:min_weight) %></th>
+          <th><%= PricesByWeight.human_attribute_name(:max_weight) %></th>
+          <th><%= PricesByWeight.human_attribute_name(:price) %></th>
+          <% if current_user.admin? %>
+          <th>Editar</th>
+          <% end %>
+        </tr>
+      </thead>
+      <% @prices_by_weights.each do |price| %>
+        <tbody>
+            <tr>
+              <td><%= price.min_weight %></td>
+              <td><%= price.max_weight %></td>
+              <td><%= price.price %></td>
+              <% if current_user.admin? %>
+                <td>
+                  <%=link_to('Editar', edit_prices_by_weight_path(price.id), class: "btn btn-primary") %>
+                </td>
+              <% end %>
+            </tr>
+        </tbody>
+      <% end %>
+    </table>
+  <div>

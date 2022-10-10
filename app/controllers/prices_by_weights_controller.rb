@@ -34,8 +34,6 @@ class PricesByWeightsController < ApplicationController
   end
 
   def check_user
-   p !current_user.admin?
-   p current_user
     if !current_user.admin?
     
       return redirect_to root_path, notice: 'Apenas administradores podem realizar esta ação'

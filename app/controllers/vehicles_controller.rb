@@ -22,7 +22,18 @@ class VehiclesController < ApplicationController
 
   def edit
     @vehicle = Vehicle.find(params[:id])
-    @modality = Modality.find(params[:id])
+    @modality = @vehicle.modality
+  end
+  
+  def update
+    @vehicle = Vehicle.find(params[:id])
+    if @vehicle.update(set_params)
+      redirect_to vehicles_path, notice: "Cadastro do veículo de placa #{@vehicle.license_plate} atualizado com sucesso"
+    else
+      flash.now[:notice] = 'Não foi possível atualizar o cadastro'
+      @modality = @vehicle.modality
+      render 'edit'
+    end
   end
   
   private
@@ -31,8 +42,7 @@ class VehiclesController < ApplicationController
   end
   
   def set_params
-    params.require(:vehicle).permit(:license_plate, :brand, :model,                                                   
-                                    :year, :capacity, :status, :modality_id)
+    params.require(:vehicle).permit(:license_plate, :brand, :model, :year, :capacity, :status, :modality_id)                          
   end
   
   def set_check_user
@@ -43,5 +53,5 @@ class VehiclesController < ApplicationController
      return redirect_to root_path, notice: 'Você não tem permissão para realizar esta ação'
     end
   end
-  
+
 end

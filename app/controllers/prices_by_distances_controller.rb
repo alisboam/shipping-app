@@ -13,7 +13,6 @@ class PricesByDistancesController < ApplicationController
     @price_by_distance = PricesByDistance.create(set_params)
     if @price_by_distance.valid?
       redirect_to prices_path, notice: "Intervalo #{@price_by_distance.min_distance}Km - #{@price_by_distance.max_distance}Km cadastrado com sucesso"
-      p @price_by_distance
     else
       flash.now[:notice] = 'Não foi possível cadastrar o intervalo'
       render 'new'

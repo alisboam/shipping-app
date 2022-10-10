@@ -51,7 +51,7 @@
               <td><%= vehicle.capacity %></td>
               <td><%= vehicle.status %></td>
               <% if current_user.admin? %>
-                <td><%=link_to('Editar',  edit_vehicle_path(:modality_id, @vehicle), class: "btn btn-success") %></td>
+                <td><%=link_to('Editar', edit_vehicle_path(vehicle), class: "btn btn-success") %></td>
               <% end %>
             </tr>
         </tbody>

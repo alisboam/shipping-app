@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :prices_by_weights, only: [:index,:new, :create, :edit, :update]
   resources :prices, only: [:index]
   resources :modalities, only: [:index,:new, :create, :show]
+  resources :delivery_times, only: [:index,:new, :create]
   root to: "home#index"
 end
 

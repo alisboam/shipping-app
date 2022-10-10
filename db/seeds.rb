@@ -23,3 +23,5 @@ PricesByWeight.create!(min_weight: 0, max_weight:1000, price:50)
 PricesByWeight.create!(min_weight: 11000, max_weight:30000, price:80)
 PricesByWeight.create!(min_weight: 101, max_weight:100000, price:100)
 
+DeliveryTime.create!(distance_betwwen: 100, hours: 24)
+

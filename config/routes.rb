@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :prices, only: [:index]
   resources :modalities, only: [:index,:new, :create, :show]
   resources :delivery_times, only: [:index,:new, :create]
+  resources :orders, only: [:index,:new, :create, :show, :update]
   root to: "home#index"
 end
 

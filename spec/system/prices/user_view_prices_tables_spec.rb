@@ -18,8 +18,9 @@ describe 'usuário entra na tela de preços' do
 
   it 'e vê a tabela de preços por distância cadastrados' do
     user = User.create!(name: 'Mary', email: 'mary@sistemadefrete.com.br', password: 'password', role: 'user')
-    PricesByDistance.create!(min_distance: 0, max_distance:50, price:9000)
-    PricesByDistance.create!(min_distance: 51, max_distance:150, price:12000)
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
+    PricesByDistance.create!(min_distance: 0, max_distance:50, price:900, modality_id: 1)
+
     login_as(user)
     visit root_path
 
@@ -49,8 +50,8 @@ describe 'usuário entra na tela de preços' do
 
   it 'e vê a tabela de preços por peso' do
     user = User.create!(name: 'Mary', email: 'mary@sistemadefrete.com.br', password: 'password', role: 'user')
-    PricesByWeight.create!(min_weight: 0, max_weight: 1000, price: 50)
-    PricesByWeight.create!(min_weight: 11000, max_weight: 30000, price: 80)
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
+    PricesByWeight.create!(min_weight: 0, max_weight: 30, price: 10, modality_id: 1)
 
     login_as(user)
     visit root_path

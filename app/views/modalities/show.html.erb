@@ -1,60 +1,142 @@
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th><%= Modality.human_attribute_name(:name) %></th>
-        <th><%= Modality.human_attribute_name(:min_distance) %></th>
-        <th><%= Modality.human_attribute_name(:max_distance) %></th>
-        <th><%= Modality.human_attribute_name(:min_weight) %></th>
-        <th><%= Modality.human_attribute_name(:max_weight) %></th>
-        <th><%= Modality.human_attribute_name(:tax) %></th>
-        <th><%= Modality.human_attribute_name(:status) %></th>
-      </tr>
-    </thead>
-      <tbody>
-          <tr>
-            <td><%= @modality.name %></td>
-            <td><%= @modality.min_distance %></td>
-            <td><%= @modality.max_distance %></td>
-            <td><%= @modality.min_weight %></td>
-            <td><%= @modality.max_weight %></td>
-            <td><%= @modality.tax %></td>
-            <td><%= @modality.status %></td>
-          </tr>
-      </tbody>
-  </table>
-  <%=link_to('Adicionar Veículos', new_vehicle_path(:id => @modality.id), class: "btn btn-success") %>
-<div>
- h2
-<div class="table-responsive">
+<section>
+<h2><%=Modality.model_name.human %></h2>
+  <div class="table-responsive">
     <table class="table">
       <thead>
         <tr>
-          <th><%= Vehicle.human_attribute_name(:model) %></th>
-          <th><%= Vehicle.human_attribute_name(:brand) %></th>
-          <th><%= Vehicle.human_attribute_name(:year) %></th>
-          <th><%= Vehicle.human_attribute_name(:license_plate) %></th>
-          <th><%= Vehicle.human_attribute_name(:capacity) %> em gramas</th>
-          <th><%= Vehicle.human_attribute_name(:status) %></th>
-          <% if current_user.admin? %>
-            <th>Editar</th>
-          <% end %>
+          <th><%= Modality.human_attribute_name(:name) %></th>
+          <th><%= Modality.human_attribute_name(:min_distance) %></th>
+          <th><%= Modality.human_attribute_name(:max_distance) %></th>
+          <th><%= Modality.human_attribute_name(:min_weight) %></th>
+          <th><%= Modality.human_attribute_name(:max_weight) %></th>
+          <th><%= Modality.human_attribute_name(:tax) %></th>
+          <th><%= Modality.human_attribute_name(:status) %></th>
         </tr>
       </thead>
-      <% @modality.vehicles.each do |vehicle| %>
         <tbody>
             <tr>
-              <td><%= vehicle.model %></td>
-              <td><%= vehicle.brand %></td>
-              <td><%= vehicle.year %></td>
-              <td><%= vehicle.license_plate %></td>
-              <td><%= vehicle.capacity %></td>
-              <td><%= vehicle.status %></td>
-              <% if current_user.admin? %>
-                <td><%=link_to('Editar', edit_vehicle_path(vehicle), class: "btn btn-success") %></td>
-              <% end %>
+              <td><%= @modality.name %></td>
+              <td><%= @modality.min_distance %></td>
+              <td><%= @modality.max_distance %></td>
+              <td><%= @modality.min_weight %></td>
+              <td><%= @modality.max_weight %></td>
+              <td><%= @modality.tax %></td>
+              <td><%= @modality.status %></td>
             </tr>
         </tbody>
-        <% end %>
     </table>
+    <%=link_to('Adicionar Veículos', new_vehicle_path(:id => @modality.id), class: "btn btn-success") %>
+    <%=link_to('Adicionar Preço por Distância', new_prices_by_distance_path(:id => @modality.id), class: "btn btn-success") %>
+    <%=link_to('Adicionar Preço por Peso', new_prices_by_weight_path(:id => @modality.id), class: "btn btn-success") %>
   <div>
+</section>
+<section>
+  <h3><%=PricesByDistance.model_name.human %></h3>
+  <% if @modality.prices_by_distances.any? %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= PricesByDistance.human_attribute_name(:min_distance) %></th>
+            <th><%= PricesByDistance.human_attribute_name(:max_distance) %></th>
+            <th><%= PricesByDistance.human_attribute_name(:price) %></th>
+            <% if current_user.admin? %>
+              <th>Editar</th>
+            <% end %>
+          </tr>
+        </thead>
+        <% @modality.prices_by_distances.each do |price| %>
+          <tbody>
+            <tr>
+              <td><%= price.min_distance %></td>
+              <td><%= price.max_distance %></td>
+              <td><%= price.price %></td>
+              <% if current_user.admin? %>
+              <td>
+                <%=link_to('Editar', edit_prices_by_distance_path(price.id), class: "btn btn-primary") %>
+              </td>
+              <% end %>
+            </tr>
+          </tbody>
+          <% end %>
+      </table>
+    <div>
+  <% else %>
+    <span class="notice"> Não existem intervalos cadastrados para preço por distância </span>
+  <% end %>
+</section>
+<section>
+  <h3><%=PricesByWeight.model_name.human %></h3>
+  <% if @modality.prices_by_weights.any? %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= PricesByWeight.human_attribute_name(:min_weight) %></th>
+            <th><%= PricesByWeight.human_attribute_name(:max_weight) %></th>
+            <th><%= PricesByWeight.human_attribute_name(:price) %></th>
+            <% if current_user.admin? %>
+              <th>Editar</th>
+            <% end %>
+          </tr>
+        </thead>
+        <% @modality.prices_by_weights.each do |price| %>
+          <tbody>
+            <tr>
+              <td><%= price.min_weight %></td>
+              <td><%= price.max_weight %></td>
+              <td><%= price.price %></td>
+              <% if current_user.admin? %>
+              <td>
+                <%=link_to('Editar', edit_prices_by_weight_path(price.id), class: "btn btn-primary") %>
+              </td>
+              <% end %>
+            </tr>
+          </tbody>
+          <% end %>
+      </table>
+    <div>
+  <% else %>
+    <span class="notice"> Não existem intervalos cadastrados para preço por peso </span>
+  <% end %>
+</section>
+<section>
+  <h3><%=Vehicle.model_name.human %></h3>
+  <% if @modality.vehicles.any? %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= Vehicle.human_attribute_name(:model) %></th>
+            <th><%= Vehicle.human_attribute_name(:brand) %></th>
+            <th><%= Vehicle.human_attribute_name(:year) %></th>
+            <th><%= Vehicle.human_attribute_name(:license_plate) %></th>
+            <th><%= Vehicle.human_attribute_name(:capacity) %> em gramas</th>
+            <th><%= Vehicle.human_attribute_name(:status) %></th>
+            <% if current_user.admin? %>
+              <th>Editar</th>
+            <% end %>
+          </tr>
+        </thead>
+        <% @modality.vehicles.each do |vehicle| %>
+          <tbody>
+              <tr>
+                <td><%= vehicle.model %></td>
+                <td><%= vehicle.brand %></td>
+                <td><%= vehicle.year %></td>
+                <td><%= vehicle.license_plate %></td>
+                <td><%= vehicle.capacity %></td>
+                <td><%= vehicle.status %></td>
+                <% if current_user.admin? %>
+                  <td><%=link_to('Editar', edit_vehicle_path(vehicle), class: "btn btn-success") %></td>
+                <% end %>
+              </tr>
+          </tbody>
+          <% end %>
+      </table>
+    <div>
+  <% else %>
+    <span class="notice"> Não existem pedidos cadastrados </span>
+  <% end %>
+</section>
+ 

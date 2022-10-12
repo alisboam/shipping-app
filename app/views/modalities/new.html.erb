@@ -1,5 +1,5 @@
 <h2>Cadastrar Modalidade</h2>
-<%= @modality %>
+<section>
 <%= bootstrap_form_with(model: @modality, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |form| %>
 	<div>
 		<%= form.text_field :name, required: true %>
@@ -23,3 +23,4 @@
 		<%= form.submit 'Enviar', class: "btn btn-primary" %>
 	</div>
 <% end %>
+</section>

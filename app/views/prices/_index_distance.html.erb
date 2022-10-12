@@ -2,24 +2,26 @@
   <table class="table">
     <thead>
       <tr>
-        <th><%= PricesByDistance.human_attribute_name(:min_distance) %></th>
-        <th><%= PricesByDistance.human_attribute_name(:max_distance) %></th>
-        <th><%= PricesByDistance.human_attribute_name(:price) %></th>
-        <% if current_user.admin? %>
-          <th>Editar</th>
-        <% end %>
+        <th class="col-lg-2"><%= Modality.human_attribute_name(:name) %></th>
+        <th class="col-lg-2"><%= PricesByDistance.human_attribute_name(:min_distance) %></th>
+        <th class="col-lg-2"><%= PricesByDistance.human_attribute_name(:max_distance) %></th>
+        <th class="col-lg-2"><%= PricesByDistance.human_attribute_name(:price) %></th>
+          <% if current_user.admin? %>
+            <th>Editar</th>
+          <% end %>
       </tr>
     </thead>
     <% @prices_by_distances.each do |price| %>
       <tbody>
         <tr>
+          <td><%= link_to(price.modality.name, modality_path(price.modality.id)) %></td>
           <td><%= price.min_distance %></td>
           <td><%= price.max_distance %></td>
           <td><%= price.price %></td>
           <% if current_user.admin? %>
-          <td>
-            <%=link_to('Editar', edit_prices_by_distance_path(price.id), class: "btn btn-primary") %>
-          </td>
+            <td>
+              <%=link_to('Editar', edit_prices_by_distance_path(price.id), class: "btn btn-primary") %>
+            </td>
           <% end %>
         </tr>
       </tbody>

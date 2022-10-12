@@ -1,3 +1,13 @@
 <h2>Cadastrar</h2>
 
+<% if(@price_by_weight.errors.any?) %>
+	<div class="alert alert-danger" role="alert">
+		<p> A validação falhou: </p>
+		<ul>
+			<% @price_by_weight.errors.full_messages.each do |message| %>
+			<li> <%= message %> </li>
+			<% end %>
+		</ul>
+	</div>
+<% end %> 
 <%= render 'form' %>

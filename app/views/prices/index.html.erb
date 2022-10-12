@@ -1,6 +1,4 @@
-<div class= 'd-inline-flex'>
-
-  <div>
+<div>
     <h2><%=PricesByDistance.model_name.human %></h2>
     <% if @prices_by_distances.any? %>
       <div class="table-responsive">
@@ -8,9 +6,6 @@
       </div>
     <% else %>
       <span> 'Não existem intervalos cadastrados para preço por distância' </span>
-    <% end %>
-    <% if user_signed_in? and current_user.admin? %>
-      <%=link_to('Cadastrar Preço por distância',  new_prices_by_distance_path, class: "btn btn-primary") %>
     <% end %>
   </div>
 
@@ -24,7 +19,4 @@
       <span> 'Não existem intervalos cadastrados para preço por peso' </span>
     <% end %>
   </div>
-  <% if user_signed_in? and current_user.admin? %>
-      <%=link_to('Cadastrar Preço por peso',  new_prices_by_weight_path, class: "btn btn-success") %>
-  <% end %>
 </div>

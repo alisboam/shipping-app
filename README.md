@@ -32,3 +32,22 @@ Using [Bundler](https://github.com/bundler/bundler) and [Yarn](https://github.co
 ```shell
 bundle && yarn
 ```
+
+### Install dependencies
+Run the following commands to create and setup the database.
+
+```ruby
+rails db:create
+rails db:setup
+rails db:seed 
+```
+
+##### Start Rails server
+
+You can start the rails server using the command given below.
+
+```ruby
+rails s
+```
+
+And now you can visit the site with the URL http://localhost:3000

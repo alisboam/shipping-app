@@ -9,7 +9,7 @@ describe 'usuário registra preço por peso' do
     visit root_path
 
     within('nav') do
-      click_on 'Preços'
+      click_on 'Modalidades de Transporte'
     end
 
     expect(page).not_to have_link 'Cadastrar Preço por peso'
@@ -17,14 +17,16 @@ describe 'usuário registra preço por peso' do
 
   it 'com sucesso' do
     user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
 
     login_as(user)
     visit root_path
     within('nav') do
-      click_on 'Preços'
+      click_on 'Modalidades de Transporte'
     end
 
-    click_on 'Cadastrar Preço por peso'
+    click_on 'Moto'
+    click_on 'Adicionar Preço por Peso'
 
     fill_in 'Peso Mínimo', with: 20
     fill_in 'Peso Máximo', with: 100
@@ -35,14 +37,16 @@ describe 'usuário registra preço por peso' do
 
   it 'com campo em branco' do
     user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
 
     login_as(user)
     visit root_path
     within('nav') do
-      click_on 'Preços'
+      click_on 'Modalidades de Transporte'
     end
 
-    click_on 'Cadastrar Preço por peso'
+    click_on 'Moto'
+    click_on 'Adicionar Preço por Peso'
 
     fill_in 'Peso Mínimo', with: ''
     fill_in 'Peso Máximo', with: ''
@@ -54,14 +58,15 @@ describe 'usuário registra preço por peso' do
 
   it 'com campo peso. máx < min' do
     user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
 
     login_as(user)
     visit root_path
     within('nav') do
-      click_on 'Preços'
+      click_on 'Modalidades de Transporte'
     end
-
-    click_on 'Cadastrar Preço por peso'
+    click_on 'Moto'
+    click_on 'Adicionar Preço por Peso'
 
     fill_in 'Peso Mínimo', with: 100
     fill_in 'Peso Máximo', with: 50
@@ -72,14 +77,16 @@ describe 'usuário registra preço por peso' do
 
   it 'com algo diferente de número' do
     user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
 
     login_as(user)
     visit root_path
     within('nav') do
-      click_on 'Preços'
+      click_on 'Modalidades de Transporte'
     end
 
-    click_on 'Cadastrar Preço por peso'
+    click_on 'Moto'
+    click_on 'Adicionar Preço por Peso'
 
     fill_in 'Peso Mínimo', with: 'ABC'
     fill_in 'Peso Máximo', with: 50

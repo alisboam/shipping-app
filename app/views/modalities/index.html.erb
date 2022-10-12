@@ -1,8 +1,4 @@
 
-<% if user_signed_in? and current_user.admin? %>
-      <%=link_to('Cadastrar Modalidade',  new_modality_path, class: "btn btn-success") %>
-<% end %>
-
 <h2>Todos as Modalidades</h2>
 <% if @modalities.any? %>
   <div class="table-responsive">
@@ -42,6 +38,10 @@
   <span> 'Não existem modalidades cadastradas' </span>
 <% end %>
 <div>
+
+<% if user_signed_in? and current_user.admin? %>
+      <%=link_to('Cadastrar Modalidade',  new_modality_path, class: "btn btn-success") %>
+<% end %>
    
 
 

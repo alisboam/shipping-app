@@ -1,0 +1,29 @@
+<% if @delivery_time.any? %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= DeliveryTime.human_attribute_name(:distance_between) %></th>
+        <th><%= DeliveryTime.human_attribute_name(:hours) %></th>
+        <% if current_user.admin? %>
+          <th>Editar</th>
+        <% end %>
+      </tr>
+    </thead>
+    <% @delivery_time.each do |time| %>
+      <tbody>
+          <tr>
+            <td>Até <%= time.distance_between %> Km</td>
+            <td><%= time.hours %></td>
+          </tr>
+      </tbody>
+      <% end %>
+  </table>
+<div>
+<% else %>
+    <span> 'Não existem prazos cadastrados' </span>
+<% end %>
+
+<% if current_user.admin? %>
+  <%= link_to('Cadastrar Prazo', new_delivery_time_path,  class: "btn btn-success")%>
+<% end %>

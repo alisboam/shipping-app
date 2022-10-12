@@ -1,3 +1,14 @@
-<h2>Editar</h2>
+<h2>Editar <%=PricesByDistance.model_name.human %></h2>
+
+<% if(@price_by_distance.errors.any?) %>
+	<div class="alert alert-danger" role="alert">
+		<p> A validação falhou: </p>
+		<ul>
+			<% @price_by_distance.errors.full_messages.each do |message| %>
+			<li> <%= message %> </li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
 
 <%= render 'form' %>

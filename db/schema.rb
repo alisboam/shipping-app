@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_09_190549) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_180620) do
   create_table "delivery_times", force: :cascade do |t|
-    t.integer "distance_betwwen"
+    t.integer "distance_between"
     t.integer "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -24,8 +24,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_190549) do
     t.integer "max_distance"
     t.integer "min_weight"
     t.integer "max_weight"
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "tax"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "sender_address"
+    t.string "sender_name"
+    t.string "receiver_address"
+    t.integer "distance_between"
+    t.string "product_code"
+    t.integer "weight"
+    t.integer "width"
+    t.integer "height"
+    t.string "receiver_name"
+    t.string "code"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_190549) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "modality_id", null: false
+    t.index ["modality_id"], name: "index_prices_by_distances_on_modality_id"
   end
 
   create_table "prices_by_weights", force: :cascade do |t|
@@ -44,6 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_190549) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "modality_id", null: false
+    t.index ["modality_id"], name: "index_prices_by_weights_on_modality_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,5 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_190549) do
     t.index ["modality_id"], name: "index_vehicles_on_modality_id"
   end
 
+  add_foreign_key "prices_by_distances", "modalities"
+  add_foreign_key "prices_by_weights", "modalities"
   add_foreign_key "vehicles", "modalities"
 end

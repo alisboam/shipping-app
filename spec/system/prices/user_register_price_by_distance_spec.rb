@@ -17,14 +17,16 @@ describe 'usuário registra preço por distância' do
 
   it 'com sucesso' do
     user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
 
     login_as(user)
     visit root_path
     within('nav') do
-      click_on 'Preços'
+      click_on 'Modalidades de Transporte'
     end
 
-    click_on 'Cadastrar Preço por distância'
+    click_on 'Moto'
+    click_on 'Adicionar Preço por Distância'
 
     fill_in 'Distância Mínima', with: 20
     fill_in 'Distância Máxima', with: 100
@@ -35,14 +37,16 @@ describe 'usuário registra preço por distância' do
 
   it 'com campo em branco' do
     user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
 
     login_as(user)
     visit root_path
     within('nav') do
-      click_on 'Preços'
+      click_on 'Modalidades de Transporte'
     end
 
-    click_on 'Cadastrar Preço por distância'
+    click_on 'Moto'
+    click_on 'Adicionar Preço por Distância'
 
     fill_in 'Distância Mínima', with: ''
     fill_in 'Distância Máxima', with: ''
@@ -54,14 +58,16 @@ describe 'usuário registra preço por distância' do
 
   it 'com campo dist. máx < min' do
     user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
 
     login_as(user)
     visit root_path
     within('nav') do
-      click_on 'Preços'
+      click_on 'Modalidades de Transporte'
     end
 
-    click_on 'Cadastrar Preço por distância'
+    click_on 'Moto'
+    click_on 'Adicionar Preço por Distância'
 
     fill_in 'Distância Mínima', with: 100
     fill_in 'Distância Máxima', with: 50
@@ -72,14 +78,16 @@ describe 'usuário registra preço por distância' do
 
   it 'com algo diferente de número' do
     user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
 
     login_as(user)
     visit root_path
     within('nav') do
-      click_on 'Preços'
+      click_on 'Modalidades de Transporte'
     end
 
-    click_on 'Cadastrar Preço por distância'
+    click_on 'Moto'
+    click_on 'Adicionar Preço por Distância'
 
     fill_in 'Distância Mínima', with: 'ABC'
     fill_in 'Distância Máxima', with: 50

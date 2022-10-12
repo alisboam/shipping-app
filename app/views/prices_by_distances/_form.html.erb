@@ -1,13 +1,3 @@
-<% if(@price_by_distance.errors.any?) %>
-	<div class="alert alert-danger" role="alert">
-		<p> A validação falhou: </p>
-		<ul>
-			<% @price_by_distance.errors.full_messages.each do |message| %>
-			<li> <%= message %> </li>
-			<% end %>
-		</ul>
-	</div>
-<% end %>
 
 <%= bootstrap_form_with(model: @price_by_distance, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |form| %>
 	<div>
@@ -18,6 +8,9 @@
 	</div>
 	<div>
 		<%= form.text_field :price, required: true %>
+	</div>
+	<div>
+		<%= form.hidden_field :modality_id, :value => @modality.id %>
 	</div>
   <div> 
 		<%= form.submit 'Enviar', class: "btn btn-primary" %>

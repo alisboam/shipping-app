@@ -1,0 +1,56 @@
+<h2><%=Order.model_name.human %>: <%= @order.code %></h2>
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= Order.human_attribute_name(:code) %></th>
+      <th><%= Order.human_attribute_name(:sender_name) %></th>
+      <th><%= Order.human_attribute_name(:sender_address) %></th>
+      <th><%= Order.human_attribute_name(:receiver_name) %></th>
+      <th><%= Order.human_attribute_name(:receiver_address) %></th>
+      <th class="col-lg-1"><%= Order.human_attribute_name(:distance_between) %></th>
+      <th><%= Order.human_attribute_name(:product_code) %></th>
+      <th><%= Order.human_attribute_name(:weight) %></th>
+      <th><%= Order.human_attribute_name(:width) %></th>
+      <th><%= Order.human_attribute_name(:height) %></th>
+      <th><%= Order.human_attribute_name(:status) %></th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr>
+        <td><%= @order.code %></td>
+        <td><%= @order.sender_name %></td>
+        <td><%= @order.sender_address %></td>
+        <td><%= @order.receiver_name%></td>
+        <td><%= @order.receiver_address %></td>
+        <td><%= @order.distance_between %></td>
+        <td><%= @order.product_code %></td>
+        <td><%= @order.weight %></td>
+        <td><%= @order.width %></td>
+        <td><%= @order.height %></td>
+        <td><%= @order.status %></td>
+      </tr>
+    </tbody>
+</table>
+<div>
+
+<h3> Modalidades que atendem: </h3>
+
+<% if @modality.any? %>
+  <% @modality.each do |m| %>
+    <%= m.calculate_price(@order) %>
+    <%= @delivery_time %>
+
+  <% end %>
+  <%= bootstrap_form_with(model: @order) do |f| %>
+    <%= f.collection_radio_buttons :name, @modality, :id, :name %>
+  <div> 
+		<%= f.submit 'Enviar', class: "btn btn-success" %>
+	</div>
+  <% end %>
+<% else %>
+  <span> 'Não existem modalidades que atendam a este pedido'</span>
+<% end %>
+
+
+

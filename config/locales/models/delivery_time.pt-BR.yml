@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      delivery_time: 'Prazo de entrega'
+    attributes:
+      delivery_time:
+        distance_between: "Distância de entrega"
+        hours: "Prazo em horas"
+        

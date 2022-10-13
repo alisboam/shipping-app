@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      order: 'Ordem de Serviço'
+    attributes:
+      order:
+        sender_address: 'Endereço do Remetente'
+        sender_name: 'Nome do Remetente'
+        receiver_name: 'Nome do Destinatário'
+        receiver_address: 'Endereço do Destinatário'
+        distance_between: 'Distância de Entrega'
+        product_code: 'Código do Produto' 
+        weight: 'Peso da Carga'
+        width: 'Largura da Carga' 
+        height: 'Altura da Carga' 
+        code: 'Código da OS'
+        

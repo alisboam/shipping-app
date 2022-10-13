@@ -1,0 +1,32 @@
+<%= bootstrap_form_with(model: @order, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |form| %>
+	<div>
+		<%= form.text_field :sender_name, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :sender_address, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :receiver_name, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :receiver_address, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :distance_between, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :product_code, required: true %>
+	</div>
+  <div>
+  	<%= form.text_field :weight, required: true %>
+	</div>
+	<div>
+  	<%= form.text_field :width, required: true %>
+	</div>
+	<div>
+  	<%= form.text_field :height, required: true %>
+	</div>
+  <div> 
+		<%= form.submit 'Enviar', class: "btn btn-primary" %>
+	</div>
+<% end %>

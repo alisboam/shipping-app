@@ -1,0 +1,22 @@
+<% if(@delivery_time.errors.any?) %>
+	<div class="alert alert-danger" role="alert">
+		<p> A validação falhou: </p>
+		<ul>
+			<% @delivery_time.errors.full_messages.each do |message| %>
+			<li> <%= message %> </li>
+			<% end %>
+		</ul>
+	</div>
+<% end %> 
+
+<%= bootstrap_form_with(model: @delivery_time, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |form| %>
+	<div>
+		<%= form.text_field :distance_between, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :hours, required: true %>
+	</div>
+  <div> 
+		<%= form.submit 'Enviar', class: "btn btn-primary" %>
+	</div>
+<% end %>

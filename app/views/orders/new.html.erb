@@ -1,3 +1,15 @@
+<h2>Cadastrar <%=Order.model_name.human %></h2>
+<% if(@order.errors.any?) %>
+	<div class="alert alert-danger" role="alert">
+		<p> A validação falhou: </p>
+		<ul>
+			<% @order.errors.full_messages.each do |message| %>
+			<li> <%= message %> </li>
+			<% end %>
+		</ul>
+	</div>
+<% end %> 
+
 <%= bootstrap_form_with(model: @order, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |form| %>
 	<div>
 		<%= form.text_field :sender_name, required: true %>

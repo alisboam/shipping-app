@@ -14,6 +14,28 @@ describe 'usuário registra ordem de serviço' do
     expect(page).not_to have_link 'Cadastrar OS'
   end
 
+  it 'e vê página de cadastro' do
+    user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
+    allow(SecureRandom).to receive(:alphanumeric).and_return('ABCD-0123456789')
+
+    login_as(user)
+    visit root_path
+    within('nav') do
+      click_on 'OS'
+    end
+
+    click_on 'Cadastrar OS'
+
+    expect(page).to have_css('h2', :text => 'Cadastrar Ordem de Serviço')
+    expect(current_path).to eq new_order_path
+    expect(page).to have_field 'Nome do Remetente'
+    expect(page).to have_field 'Nome do Destinatário'
+    expect(page).to have_field 'Distância de Entrega'
+    expect(page).to have_field 'Código do Produto'
+    expect(page).to have_field 'Peso da Carga'
+    expect(page).to have_field 'Largura da Carga'
+    expect(page).to have_field 'Altura da Carga'
+  end
   it 'com sucesso' do
     user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
     allow(SecureRandom).to receive(:alphanumeric).and_return('ABCD-0123456789')

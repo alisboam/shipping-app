@@ -19,6 +19,5 @@ RSpec.describe PricesByDistance, type: :model do
       price = PricesByDistance.create(min_distance: 'ABC', max_distance:'DEF', price:'GH')
       expect(price.valid?).to eq false
     end
-
   end
 end

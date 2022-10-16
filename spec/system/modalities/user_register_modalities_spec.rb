@@ -21,10 +21,10 @@ describe 'usuário registra modalidade de transporte' do
     visit new_modality_path
 
     fill_in 'Nome da Modalidade', with: 'Caminhão'
-    fill_in 'Distância Mínima', with: 10
-    fill_in 'Distância Máxima', with: 50
-    fill_in 'Peso Mínimo', with: 20
-    fill_in 'Peso Máximo', with: 500
+    fill_in 'Distância Mínima (Km)', with: 10
+    fill_in 'Distância Máxima (Km)', with: 50
+    fill_in 'Peso Mínimo (Kg)', with: 20
+    fill_in 'Peso Máximo (Kg)', with: 500
     fill_in 'Taxa fixa', with: 500
     click_on 'Enviar'
 

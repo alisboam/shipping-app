@@ -3,12 +3,14 @@ require 'rails_helper'
 describe 'usuário registra prazo de entrega' do
   it 'e não é admin' do
     user = User.create!(name: 'Mary', email: 'mary@sistemadefrete.com.br', password: 'password', role: 'user')
+    Modality.create!(name: 'Moto', min_weight: 1, max_weight: 50, min_distance: 1, max_distance:100, tax: 1000)
 
     login_as(user)
     visit root_path
     within('nav') do
-      click_on 'Prazos'
+      click_on 'Modalidades de Transporte'
     end
+    click_on 'Moto'
 
     expect(page).not_to have_link 'Editar'
   end
@@ -26,12 +28,12 @@ describe 'usuário registra prazo de entrega' do
     click_on 'Moto'
     click_on 'Editar'
 
-    fill_in 'Distância de entrega', with: 100
+    fill_in 'Distância de Entrega (Km)', with: 100
     fill_in 'Prazo em horas', with: 24
     click_on 'Enviar'
 
     expect(page).to have_css 'table'
-    expect(page).to have_css('tr', text: 'Distância de entrega')
+    expect(page).to have_css('tr', text: 'Distância de Entrega (Km)')
     expect(page).to have_css('td', text: '100')
     expect(page).to have_css('tr', text: 'Prazo em horas')
     expect(page).to have_css('td', text: '24')
@@ -51,11 +53,11 @@ describe 'usuário registra prazo de entrega' do
     click_on 'Moto'
     click_on 'Editar'
 
-    fill_in 'Distância de entrega', with: -1
+    fill_in 'Distância de Entrega (Km)', with: -1
     fill_in 'Prazo em horas', with: ''
     click_on 'Enviar'
 
     expect(page).to have_content 'Não foi possível atualizar o cadastro'
-    expect(page).to have_content 'Distância de entrega deve ser maior que 0'
+    expect(page).to have_content 'Distância de Entrega (Km) deve ser maior que 0'
   end
 end

@@ -6,7 +6,7 @@ class Order < ApplicationRecord
 
   before_validation :generate_code, on: :create
   validates :sender_name, :sender_address, :receiver_name, :receiver_address, :distance_between, :product_code, :weight, :width, :height, presence: :true
-  validates :weight, :width, :height, :distance_between, numericality: { only_integer: true, greater_than:0 }
+  validates :weight, :width, :height, :distance_between, numericality: { only_integer: true, greater_than_or_equal_to:0 }
 
   def is_delayed 
     DateTime.now > self.estimated_delivery_date

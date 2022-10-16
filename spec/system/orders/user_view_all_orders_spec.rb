@@ -21,7 +21,7 @@ describe 'usuário vê ordens de serviço' do
     expect(page).to have_css 'table'
     expect(page).to have_css('th', text: 'Nome do Remetente') 
     expect(page).to have_css('th', text: 'Nome do Destinatário') 
-    expect(page).to have_css('th', text: 'Distância de Entrega') 
+    expect(page).to have_css('th', text: 'Distância de Entrega (Km)') 
     expect(page).to have_css('th', text: 'Código do Produto') 
     expect(page).to have_css('th', text: 'Status') 
     expect(page).to have_css('td', text: 'Pendente')

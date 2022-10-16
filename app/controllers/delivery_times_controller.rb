@@ -1,9 +1,5 @@
 class DeliveryTimesController < ApplicationController
   before_action :set_check_user, only: [:new, :create, :edit, :update]
-  
-  def index
-    @delivery_times = DeliveryTime.all
-  end
 
   def new
     @modality = Modality.find(params[:id])
@@ -29,7 +25,7 @@ class DeliveryTimesController < ApplicationController
   def update
     @delivery_time = DeliveryTime.find(params[:id])
     if @delivery_time.update(set_params)
-      redirect_to delivery_times_path, notice: 'Cadastro atualizado com sucesso'
+      redirect_to modality_path(set_params[:modality_id]), notice: 'Cadastro atualizado com sucesso'
     else
       @modality = Modality.find(params[:id])
       flash.now[:alert] = 'Não foi possível atualizar o cadastro'

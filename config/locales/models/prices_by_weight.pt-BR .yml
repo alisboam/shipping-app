@@ -4,7 +4,7 @@ pt-BR:
       prices_by_weight: 'Preço por Peso'
     attributes:
       prices_by_weight:
-        min_weight: "Peso Mínimo"
-        max_weight: "Peso Máximo"
+        min_weight: "Peso Mínimo (Kg)"
+        max_weight: "Peso Máximo (Kg)"
         price: "Preço por Kg"
         

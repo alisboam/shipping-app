@@ -1,10 +1,6 @@
 class PricesByDistancesController < ApplicationController
   before_action :check_user, only:[ :new, :create, :edit, :update]
 
-  def index
-    @prices_by_distances = PricesByDistance.all.sort_by {|m| m.min_distance}
-  end
-
   def new
     @modality = Modality.find(params[:id])
     @price_by_distance = PricesByDistance.new
@@ -29,7 +25,7 @@ class PricesByDistancesController < ApplicationController
   def update
     @price_by_distance = PricesByDistance.find(params[:id])
     if @price_by_distance.update(set_params)
-      redirect_to prices_path, notice: 'Cadastro atualizado com sucesso'
+      redirect_to modality_path(set_params[:modality_id]), notice: 'Cadastro atualizado com sucesso'
     else
       @modality = Modality.find(params[:id])
       flash.now[:alert] = 'Não foi possível atualizar o cadastro'

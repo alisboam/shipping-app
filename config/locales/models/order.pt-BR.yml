@@ -11,7 +11,7 @@ pt-BR:
         sender_name: 'Nome do Remetente'
         receiver_name: 'Nome do Destinatário'
         receiver_address: 'Endereço do Destinatário'
-        distance_between: 'Distância de Entrega'
+        distance_between: 'Distância de Entrega (Km)'
         product_code: 'Código do Produto' 
         weight: 'Peso da Carga'
         width: 'Largura da Carga' 

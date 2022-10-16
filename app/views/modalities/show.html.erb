@@ -20,7 +20,7 @@
               <td><%= @modality.max_distance %></td>
               <td><%= @modality.min_weight %></td>
               <td><%= @modality.max_weight %></td>
-              <td><%= @modality.tax %></td>
+              <td><%= number_to_currency(@modality.tax / 100.00, unit: "R$", separator: ",", delimiter: "", format: "%u %n") %></td> 
               <td><%= I18n.t(@modality.status) %></td>
             </tr>
         </tbody>
@@ -56,7 +56,7 @@
             <tr>
               <td><%= price.min_distance %></td>
               <td><%= price.max_distance %></td>
-              <td><%= price.price %></td>
+              <td><%= number_to_currency(price.price / 100.00, unit: "R$", separator: ",", delimiter: "", format: "%u %n") %></td>
               <% if current_user.admin? %>
               <td>
                 <%=link_to('Editar', edit_prices_by_distance_path(price.id), class: "btn btn-primary") %>
@@ -91,7 +91,7 @@
             <tr>
               <td><%= price.min_weight %></td>
               <td><%= price.max_weight %></td>
-              <td><%= price.price %></td>
+              <td><%= number_to_currency(price.price / 100.00, unit: "R$", separator: ",", delimiter: "", format: "%u %n") %></td>
               <% if current_user.admin? %>
               <td>
                 <%=link_to('Editar', edit_prices_by_weight_path(price.id), class: "btn btn-primary") %>
@@ -124,7 +124,7 @@
           <tbody>
               <tr>
                 <td>Até <%= d.distance_between %></td>
-                <td>Até <%= d.hours %></td>>
+                <td>Até <%= d.hours %></td>
                 <% if current_user.admin? %>
                   <td><%=link_to('Editar', edit_delivery_time_path(d.id), class: "btn btn-primary") %></td>
                 <% end %>
@@ -134,7 +134,7 @@
       </table>
     <div>
   <% else %>
-    <span class="warning"> Não existem pedidos cadastrados </span>
+    <span class="warning"> Não existem prazos cadastrados </span>
   <% end %>
 </section>
 <section>
@@ -165,7 +165,7 @@
                 <td><%= vehicle.capacity %></td>
                 <td><%= I18n.t(vehicle.status) %></td>
                 <% if current_user.admin? %>
-                  <td><%=link_to('Editar', edit_vehicle_path(vehicle), class: "btn btn-success") %></td>
+                  <td><%=link_to('Editar', edit_vehicle_path(vehicle), class: "btn btn-primary") %></td>
                 <% end %>
               </tr>
           </tbody>

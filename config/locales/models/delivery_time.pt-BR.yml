@@ -4,6 +4,6 @@ pt-BR:
       delivery_time: 'Prazo de entrega'
     attributes:
       delivery_time:
-        distance_between: "Distância de entrega"
+        distance_between: "Distância de Entrega (Km)"
         hours: "Prazo em horas"
         

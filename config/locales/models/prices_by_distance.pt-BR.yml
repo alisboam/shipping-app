@@ -4,7 +4,7 @@ pt-BR:
       prices_by_distance: 'Preço por Distância'
     attributes:
       prices_by_distance:
-        min_distance: "Distância Mínima"
-        max_distance: "Distância Máxima"
+        min_distance: "Distância Mínima (Km)"
+        max_distance: "Distância Máxima (Km)"
         price: "Preço por Km"
         

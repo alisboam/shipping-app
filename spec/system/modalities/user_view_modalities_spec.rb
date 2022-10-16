@@ -28,13 +28,13 @@ describe 'usuário visualiza modalidades de transporte' do
     expect(page).to have_css 'table'
     expect(page).to have_content 'Nome da Modalidade'
     expect(page).to have_content 'Caminhão'
-    expect(page).to have_content 'Distância Mínima'
+    expect(page).to have_content 'Distância Mínima (Km)'
     expect(page).to have_content '51'
-    expect(page).to have_content 'Distância Máxima'
+    expect(page).to have_content 'Distância Máxima (Km)'
     expect(page).to have_content '150'
-    expect(page).to have_content 'Peso Mínimo'
+    expect(page).to have_content 'Peso Mínimo (Kg)'
     expect(page).to have_content '0'
-    expect(page).to have_content 'Peso Máximo'
+    expect(page).to have_content 'Peso Máximo (Kg)'
     expect(page).to have_content '1000'
     expect(page).to have_content 'Taxa fixa'
     expect(page).to have_content '5'
@@ -65,13 +65,13 @@ describe 'usuário visualiza modalidades de transporte' do
     expect(current_path).to eq modality_path(1)
     expect(page).to have_css('tr', text: 'Nome da Modalidade')
     expect(page).to have_css('td', text: 'Caminhão')
-    expect(page).to have_css('tr', text: 'Distância Mínima')
+    expect(page).to have_css('tr', text: 'Distância Mínima (Km)')
     expect(page).to have_css('td', text:'51')
-    expect(page).to have_css('tr', text: 'Distância Máxima')
+    expect(page).to have_css('tr', text: 'Distância Máxima (Km)')
     expect(page).to have_css('td', text: '150')
-    expect(page).to have_css('tr', text: 'Peso Mínimo')
+    expect(page).to have_css('tr', text: 'Peso Mínimo (Kg)')
     expect(page).to have_css('td', text: '0')
-    expect(page).to have_css('tr', text: 'Peso Máximo')
+    expect(page).to have_css('tr', text: 'Peso Máximo (Kg)')
     expect(page).to have_css('td', text: '1000')
     expect(page).to have_css('tr', text: 'Taxa fixa')
     expect(page).to have_css('td', text: '5')

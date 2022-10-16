@@ -7,9 +7,9 @@ pt-BR:
     attributes:
       modality:
         name: "Nome da Modalidade"
-        min_distance: "Distância Mínima"
-        max_distance: "Distância Máxima"
-        min_weight: "Peso Mínimo"
-        max_weight: "Peso Máximo"
+        min_distance: "Distância Mínima (Km)"
+        max_distance: "Distância Máxima (Km)"
+        min_weight: "Peso Mínimo (Kg)"
+        max_weight: "Peso Máximo (Kg)"
         tax: "Taxa fixa"
         

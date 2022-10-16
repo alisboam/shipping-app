@@ -25,7 +25,7 @@ class PricesByWeightsController < ApplicationController
   def update
     @price_by_weight = PricesByWeight.find(params[:id])
     if @price_by_weight.update(set_params)
-      redirect_to prices_path, notice: 'Cadastro atualizado com sucesso'
+      redirect_to modality_path(set_params[:modality_id]), notice: 'Cadastro atualizado com sucesso'
     else
       @modality = Modality.find(set_params[:modality_id])
       flash.now[:alert] = 'Não foi possível atualizar o cadastro'

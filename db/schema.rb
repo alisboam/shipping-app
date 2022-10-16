@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_180620) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_15_150814) do
   create_table "delivery_times", force: :cascade do |t|
     t.integer "distance_between"
     t.integer "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "modality_id", null: false
+    t.index ["modality_id"], name: "index_delivery_times_on_modality_id"
   end
 
   create_table "modalities", force: :cascade do |t|
@@ -24,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_180620) do
     t.integer "max_distance"
     t.integer "min_weight"
     t.integer "max_weight"
-    t.integer "status", default: 0
+    t.integer "status", default: 10
     t.integer "tax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,9 +43,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_180620) do
     t.integer "height"
     t.string "receiver_name"
     t.string "code"
-    t.integer "status", default: 0
+    t.integer "status", default: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "modality_id"
+    t.integer "delivery_price"
+    t.datetime "estimated_delivery_date"
+    t.integer "vehicle_id"
+    t.datetime "delivery_date"
+    t.string "delay_reason"
+    t.index ["modality_id"], name: "index_orders_on_modality_id"
+    t.index ["vehicle_id"], name: "index_orders_on_vehicle_id"
   end
 
   create_table "prices_by_distances", force: :cascade do |t|
@@ -93,6 +103,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_180620) do
     t.index ["modality_id"], name: "index_vehicles_on_modality_id"
   end
 
+  add_foreign_key "delivery_times", "modalities"
+  add_foreign_key "orders", "modalities"
+  add_foreign_key "orders", "vehicles"
   add_foreign_key "prices_by_distances", "modalities"
   add_foreign_key "prices_by_weights", "modalities"
   add_foreign_key "vehicles", "modalities"

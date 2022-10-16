@@ -1,5 +1,5 @@
 class ModalitiesController < ApplicationController
-  before_action :set_check_user, only: [:new, :create, :edit, :update]
+  before_action :set_check_user, only: [:new, :create, :edit, :update, :inactivate]
 
  def index
   @modalities = Modality.all
@@ -23,6 +23,15 @@ class ModalitiesController < ApplicationController
     render 'new'
   end
  end
+
+ def inactivate
+  @modality = Modality.find(params[:id])
+  if @modality.status == 'inactive'
+   return redirect_to modality_path(@modality.id), notice: "Modalidade #{@modality.name} já está desativada"
+  end
+  @modality.update(status: 'inactive')
+  redirect_to modality_path(@modality.id), alert: "Modalidade #{@modality.name} desativada com sucesso"
+end
 
  private
   def set_params 

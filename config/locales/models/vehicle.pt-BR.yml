@@ -1,4 +1,7 @@
 pt-BR:
+  active: 'Ativo'
+  maintenance: 'Em manutenção'
+  delivering: 'Em entrega'
   activerecord:
     models:
       vehicle: 
@@ -11,3 +14,4 @@ pt-BR:
         model: "Modelo"
         year: "Ano"
         capacity: "Capacidade"
+  

@@ -33,12 +33,12 @@
               </li>
             </ul>
         </div>
-        <% if user_signed_in? %>
           <div class="d-flex align-items-center">
             <%= bootstrap_form_with(url: '/orders/search', method: :get, control_col: "col-sm-3") do |form| %>
-            <%= form.text_field :search, hide_label: true, append: form.primary('Buscar'), placeholder: 'Buscar Pedido' %>
+            <%= form.text_field :search, hide_label: true, append: form.primary('Buscar'), placeholder: 'Número de rastreio' %>
             <% end %>
           </div>
+        <% if user_signed_in? %>
           <div class="navbar-nav nav-link d-flex justify-content-end">
             <%= current_user.description %>
           </div>
@@ -55,6 +55,9 @@
     <main>
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger"><%= flash[:alert] %></div>
       <% end %>
       <%= yield %>
     </main>

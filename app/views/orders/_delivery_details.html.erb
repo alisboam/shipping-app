@@ -1,0 +1,24 @@
+<h3> Detalhes da entrega: </h3>
+<dl class="row">
+  <dt class="col-sm-2"><%= Order.human_attribute_name(:status) %></dt>
+  <dd class="col-sm-9"><%= I18n.t(@order.status) %></dd>
+  <dt class="col-sm-2"><%= Order.human_attribute_name(:modality_id) %></dt>
+  <dd class="col-sm-9"><%= Modality.find(@order.modality_id).name %></dd>
+  <dt class="col-sm-2"><%= Order.human_attribute_name(:estimated_delivery_date) %></dt>
+  <dd class="col-sm-9"><%= DateTime.parse(I18n.l(@order.estimated_delivery_date)).strftime("%d/%m/%Y") %></dd>
+  <dt class="col-sm-2"><%= Order.human_attribute_name(:delivery_price) %></dt>
+  <dd class="col-sm-9"><%= number_to_currency(@order.delivery_price / 100, unit: "R$", separator: ",", delimiter: "", format: "%u %n") %></dd>
+  <dt class="col-sm-2"><%= 'Código de Rastreio' %></dt>
+  <dd class="col-sm-9"><%= @order.code %></dd></dd>
+  <dt class="col-sm-2"><%= Order.human_attribute_name(:vehicle_id) %></dt>
+  <dd class="col-sm-9"><%= Vehicle.find(@order.vehicle_id).brand %>, Placa: <%= Vehicle.find(@order.vehicle_id).license_plate %></dd>
+
+  <% if @order.status == 'closed'%>
+    <dt class="col-sm-2"><%= Order.human_attribute_name(:delivery_date) %></dt>
+    <dd class="col-sm-9"><%= DateTime.parse(I18n.l(@order.delivery_date)).strftime("%d/%m/%Y") %></dd>
+    <% if @order.delay_reason%>
+      <dt class="col-sm-2"><%= Order.human_attribute_name(:delay_reason) %></dt>
+      <dd class="col-sm-9"><%= @order.delay_reason %></dd>
+    <% end %>
+  <% end %>
+</dl>

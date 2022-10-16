@@ -34,7 +34,7 @@ describe 'usuário registra modalidade de transporte' do
 
   it 'e adiciona veículos com sucesso' do
     user_admin = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
-    modality = Modality.create!(name: 'Caminhão', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5, status: 'ativo')
+    modality = Modality.create!(name: 'Caminhão', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5)
 
     login_as(user_admin)
     visit modality_path(modality.id)
@@ -47,7 +47,6 @@ describe 'usuário registra modalidade de transporte' do
       fill_in 'Modelo', with: 'Ford Ka'
       fill_in 'Ano', with: '2015'
       fill_in 'Capacidade', with: '15000'
-      select 'Ativo', from: 'Status'
       click_on 'Enviar'
     end
     expect(current_path).to eq modality_path(modality.id)
@@ -56,13 +55,13 @@ describe 'usuário registra modalidade de transporte' do
     expect(page).to have_content 'Ford Ka'
     expect(page).to have_content '2015'
     expect(page).to have_content '15000'
-    expect(page).to have_content 'ativo'
+    expect(page).to have_content 'Ativo'
     expect(page).to have_content "Veículo Ford Ka de placa: ABC1234 cadastrado com sucesso"
   end
 
   it 'e adiciona veículos com dados incompletos' do
     user_admin = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
-    modality = Modality.create!(name: 'Caminhão', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5, status: 'ativo')
+    modality = Modality.create!(name: 'Caminhão', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5)
 
     login_as(user_admin)
     visit modality_path(modality.id)
@@ -72,7 +71,6 @@ describe 'usuário registra modalidade de transporte' do
     within('body') do
       fill_in 'Placa', with: ''
       fill_in 'Capacidade', with: ''
-      select'Ativo', from: 'Status'
       click_on 'Enviar'
     end
     expect(page).to have_content 'Não foi possível cadastrar o veículo'

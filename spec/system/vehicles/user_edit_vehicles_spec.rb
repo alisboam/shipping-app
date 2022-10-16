@@ -17,8 +17,8 @@ describe 'usuário edita veículo' do
 
   it 'com sucesso' do
     user_admin = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
-    modality = Modality.create!(name: 'Carro', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5, status: 'ativo')
-    vehicle = Vehicle.create!(license_plate: 'ABC1234', brand:'Ford', model:'Ka', year: 2015, capacity:10000, status:'ativo', modality: modality)
+    modality = Modality.create!(name: 'Carro', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5)
+    vehicle = Vehicle.create!(license_plate: 'ABC1234', brand:'Ford', model:'Ka', year: 2015, capacity:10000, modality: modality)
 
     login_as(user_admin)
     visit vehicles_path
@@ -39,8 +39,8 @@ describe 'usuário edita veículo' do
 
   it 'com dados incompletos' do
     user_admin = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
-    modality = Modality.create!(name: 'Carro', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5, status: 'ativo')
-    vehicle = Vehicle.create!(license_plate: 'ABC1234', brand:'Ford', model:'Ka', year: 2015, capacity:10000, status:'ativo', modality: modality)
+    modality = Modality.create!(name: 'Carro', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5)
+    vehicle = Vehicle.create!(license_plate: 'ABC1234', brand:'Ford', model:'Ka', year: 2015, capacity:10000, modality: modality)
 
     login_as(user_admin)
     visit  edit_vehicle_path(vehicle.id)

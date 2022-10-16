@@ -1,31 +1,33 @@
 <h2><%=Order.model_name.human %></h2>
-<div class="table-responsive">
-<table class="table">
-    <thead>
-        <tr>
-            <th><%= Order.human_attribute_name(:code) %></th>
-            <th><%= Order.human_attribute_name(:sender_name) %></th>
-            <th><%= Order.human_attribute_name(:receiver_name) %></th>
-            <th><%= Order.human_attribute_name(:distance_between) %></th>
-            <th><%= Order.human_attribute_name(:product_code) %></th>
-            <th><%= Order.human_attribute_name(:status) %></th>
-        </tr>
-    </thead>
-    <% @orders.each do |order| %>
-        <tbody>
-            <tr>
-                <td><%= link_to(order.code, order_path(order.id)) %></td>
-                <td><%= order.sender_name %></td>
-                <td><%= order.receiver_name%></td>
-                <td><%= order.distance_between %></td>
-                <td><%= order.product_code %></td>
-                <td><%= order.status %></td>
-            </tr>
-        </tbody>
-    <% end %>
-</table>
-<% if user_signed_in? and current_user.admin? %>
-      <%=link_to('Cadastrar OS',  new_order_path, class: "btn btn-success") %>
-  <% end %>
-<div>
 
+<%= link_to("Todas", orders_path) %> >
+<%= link_to("Pendentes", orders_path(:status => 'pending')) %> >
+<%= link_to("Iniciadas", orders_path(:status => 'on_going')) %> >
+<%= link_to("Encerradas", orders_path(:status => 'closed')) %>
+
+<% if @orders.any? %>
+	<div class="table-responsive">
+		<table class="table">
+			<%= render 'index' %>
+			<% @orders.each do |order| %>
+				<tbody id="myTable">
+					<tr>
+						<td><%= link_to(order.code, order_path(order.id)) %></td>
+						<td><%= order.sender_name %></td>
+						<td><%= order.receiver_name%></td>
+						<td><%= order.distance_between %></td>
+						<td><%= order.product_code %></td>
+						<td class="p-3 mb-2">
+							<span class="badge <%= order.status == 'on_going' ? 'bg-success' : 'bg-secondary' %>"><%= I18n.t(order.status) %></span>
+						</td>
+					</tr>
+				</tbody>
+			<% end %>
+		</table>
+	<div>
+<% else %>
+    <span class="warning"> Não existem OS cadastradas </span>
+<% end %>
+<% if user_signed_in? and current_user.admin? %>
+		<%=link_to('Cadastrar OS', new_order_path, class: "btn btn-success") %>
+<% end %>

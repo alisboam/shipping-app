@@ -1,0 +1,7 @@
+
+<% if @order.present? %>
+<h2>Resultados da busca por: <%= @order.code %></h1>
+  <%= render "delivery_details" %>
+<% else %>
+	<span class="warning"> Não há resultados para a busca </span>
+<% end %>

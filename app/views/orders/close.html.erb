@@ -1,0 +1,11 @@
+<%= render 'delivery_details'%>
+
+<%= bootstrap_form_with(url: close_order_path(@order), layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |form| %>
+	<div>
+		<label class="form-label" for="delay_reason">Descreva motivo do atraso</label>
+  	<%= form.text_field :delay_reason, required: true, hide_label: true %>
+	</div>
+  <div> 
+		<%= form.submit 'Enviar', class: "btn btn-primary" %>
+	</div>
+<% end %>

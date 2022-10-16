@@ -15,7 +15,7 @@ class VehiclesController < ApplicationController
       redirect_to modality_path(set_params[:modality_id]), notice: "Veículo #{@vehicle.model} de placa: #{@vehicle.license_plate} cadastrado com sucesso"
     else
       @modality = Modality.find(set_params[:modality_id])
-      flash.now[:notice] = 'Não foi possível cadastrar o veículo'
+      flash.now[:alert] = 'Não foi possível cadastrar o veículo'
       render 'new'
     end
   end
@@ -30,7 +30,7 @@ class VehiclesController < ApplicationController
     if @vehicle.update(set_params)
       redirect_to vehicles_path, notice: "Cadastro do veículo de placa #{@vehicle.license_plate} atualizado com sucesso"
     else
-      flash.now[:notice] = 'Não foi possível atualizar o cadastro'
+      flash.now[:alert] = 'Não foi possível atualizar o cadastro'
       @modality = @vehicle.modality
       render 'edit'
     end

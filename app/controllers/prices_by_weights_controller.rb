@@ -28,7 +28,7 @@ class PricesByWeightsController < ApplicationController
       redirect_to prices_path, notice: 'Cadastro atualizado com sucesso'
     else
       @modality = Modality.find(set_params[:modality_id])
-      flash.now[:notice] = 'Não foi possível atualizar o cadastro'
+      flash.now[:alert] = 'Não foi possível atualizar o cadastro'
       render 'edit'
     end
   end
@@ -40,7 +40,7 @@ class PricesByWeightsController < ApplicationController
 
   def check_user
     if !current_user.admin?
-      return redirect_to root_path, notice: 'Apenas administradores podem realizar esta ação'
+      return redirect_to root_path, alert: 'Apenas administradores podem realizar esta ação'
     end
   end
 end

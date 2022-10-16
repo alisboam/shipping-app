@@ -21,13 +21,19 @@
               <td><%= @modality.min_weight %></td>
               <td><%= @modality.max_weight %></td>
               <td><%= @modality.tax %></td>
-              <td><%= @modality.status %></td>
+              <td><%= I18n.t(@modality.status) %></td>
             </tr>
         </tbody>
     </table>
-    <%=link_to('Adicionar Veículos', new_vehicle_path(:id => @modality.id), class: "btn btn-success") %>
-    <%=link_to('Adicionar Preço por Distância', new_prices_by_distance_path(:id => @modality.id), class: "btn btn-success") %>
-    <%=link_to('Adicionar Preço por Peso', new_prices_by_weight_path(:id => @modality.id), class: "btn btn-success") %>
+    <% if current_user.admin? %>
+      <div>
+        <%=link_to('Adicionar Veículos', new_vehicle_path(:id => @modality.id), class: "btn btn-success") %>
+        <%=link_to('Adicionar Preço por Distância', new_prices_by_distance_path(:id => @modality.id), class: "btn btn-success") %>
+        <%=link_to('Adicionar Preço por Peso', new_prices_by_weight_path(:id => @modality.id), class: "btn btn-success") %>
+        <%=link_to('Cadastrar Prazo', new_delivery_time_path(:id => @modality.id), class: "btn btn-success") %>
+        <%= button_to('Desativar modalidade', inactivate_modality_path(@modality.id), class: "btn btn-danger")%>
+      </div>
+    <% end %>
   <div>
 </section>
 <section>
@@ -37,9 +43,9 @@
       <table class="table">
         <thead>
           <tr>
-            <th><%= PricesByDistance.human_attribute_name(:min_distance) %></th>
-            <th><%= PricesByDistance.human_attribute_name(:max_distance) %></th>
-            <th><%= PricesByDistance.human_attribute_name(:price) %></th>
+            <th class="col-lg-2"><%= PricesByDistance.human_attribute_name(:min_distance) %></th>
+            <th class="col-lg-2"><%= PricesByDistance.human_attribute_name(:max_distance) %></th>
+            <th class="col-lg-2"><%= PricesByDistance.human_attribute_name(:price) %></th>
             <% if current_user.admin? %>
               <th>Editar</th>
             <% end %>
@@ -72,9 +78,9 @@
       <table class="table">
         <thead>
           <tr>
-            <th><%= PricesByWeight.human_attribute_name(:min_weight) %></th>
-            <th><%= PricesByWeight.human_attribute_name(:max_weight) %></th>
-            <th><%= PricesByWeight.human_attribute_name(:price) %></th>
+            <th class="col-lg-2"><%= PricesByWeight.human_attribute_name(:min_weight) %></th>
+            <th class="col-lg-2"><%= PricesByWeight.human_attribute_name(:max_weight) %></th>
+            <th class="col-lg-2"><%= PricesByWeight.human_attribute_name(:price) %></th>
             <% if current_user.admin? %>
               <th>Editar</th>
             <% end %>
@@ -98,6 +104,37 @@
     <div>
   <% else %>
     <span class="notice"> Não existem intervalos cadastrados para preço por peso </span>
+  <% end %>
+</section>
+<section>
+  <h3><%=DeliveryTime.model_name.human %></h3>
+  <% if @modality.delivery_times.any? %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="col-lg-3"><%= DeliveryTime.human_attribute_name(:distance_between) %></th>
+            <th class="col-lg-3"><%= DeliveryTime.human_attribute_name(:hours) %></th>
+            <% if current_user.admin? %>
+              <th>Editar</th>
+            <% end %>
+          </tr>
+        </thead>
+        <% @modality.delivery_times.each do |d| %>
+          <tbody>
+              <tr>
+                <td>Até <%= d.distance_between %></td>
+                <td>Até <%= d.hours %></td>>
+                <% if current_user.admin? %>
+                  <td><%=link_to('Editar', edit_delivery_time_path(d.id), class: "btn btn-primary") %></td>
+                <% end %>
+              </tr>
+          </tbody>
+          <% end %>
+      </table>
+    <div>
+  <% else %>
+    <span class="warning"> Não existem pedidos cadastrados </span>
   <% end %>
 </section>
 <section>
@@ -126,7 +163,7 @@
                 <td><%= vehicle.year %></td>
                 <td><%= vehicle.license_plate %></td>
                 <td><%= vehicle.capacity %></td>
-                <td><%= vehicle.status %></td>
+                <td><%= I18n.t(vehicle.status) %></td>
                 <% if current_user.admin? %>
                   <td><%=link_to('Editar', edit_vehicle_path(vehicle), class: "btn btn-success") %></td>
                 <% end %>
@@ -136,7 +173,8 @@
       </table>
     <div>
   <% else %>
-    <span class="notice"> Não existem pedidos cadastrados </span>
+    <span class="warning"> Não existem pedidos cadastrados </span>
   <% end %>
 </section>
+
  

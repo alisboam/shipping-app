@@ -16,7 +16,7 @@ describe 'usuário visualiza modalidades de transporte' do
 
   it 'e vê página de modalidades' do
     user_admin = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
-    modality = Modality.create!(name: 'Caminhão', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5, status: 'ativo')
+    modality = Modality.create!(name: 'Caminhão', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5)
 
     login_as(user_admin)
     visit root_path
@@ -52,7 +52,7 @@ describe 'usuário visualiza modalidades de transporte' do
 
   it 'e vê detalhes de uma modalidade' do
     user = User.create!(name: 'Jane', email: 'jane@sistemadefrete.com.br', password: 'password', role: 'user')
-    modality = Modality.create!(name: 'Caminhão', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5, status: 'ativo')
+    modality = Modality.create!(name: 'Caminhão', min_weight: 0, max_weight: 1000, min_distance: 51, max_distance:150, tax: 5)
 
     login_as(user)
     visit root_path

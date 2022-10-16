@@ -21,7 +21,7 @@
               <td><%= vehicle.year %></td>
               <td><%= vehicle.license_plate %></td>
               <td><%= vehicle.capacity %></td>
-              <td><%= vehicle.status %></td>
+              <td><%= I18n.t(vehicle.status) %></td>
               <% if current_user.admin? %>
                 <td><%=link_to('Editar',  edit_vehicle_path(vehicle), class: "btn btn-success") %></td>
               <% end %>

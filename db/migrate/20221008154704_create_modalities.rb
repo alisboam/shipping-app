@@ -6,7 +6,7 @@ class CreateModalities < ActiveRecord::Migration[7.0]
       t.integer :max_distance
       t.integer :min_weight
       t.integer :max_weight
-      t.integer :status, default: 0
+      t.integer :status, default: 10
       t.integer :tax
 
       t.timestamps

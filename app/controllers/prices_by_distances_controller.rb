@@ -2,7 +2,7 @@ class PricesByDistancesController < ApplicationController
   before_action :check_user, only:[ :new, :create, :edit, :update]
 
   def index
-    @prices_by_distances = PricesByDistance.all
+    @prices_by_distances = PricesByDistance.all.sort_by {|m| m.min_distance}
   end
 
   def new
@@ -16,7 +16,7 @@ class PricesByDistancesController < ApplicationController
       redirect_to modality_path(set_params[:modality_id]), notice: "Intervalo #{@price_by_distance.min_distance}Km - #{@price_by_distance.max_distance}Km cadastrado com sucesso"
     else
       @modality = Modality.find(set_params[:modality_id])
-      flash.now[:notice] = 'Não foi possível cadastrar o intervalo'
+      flash.now[:alert] = 'Não foi possível cadastrar o intervalo'
       render 'new'
     end
   end
@@ -32,7 +32,7 @@ class PricesByDistancesController < ApplicationController
       redirect_to prices_path, notice: 'Cadastro atualizado com sucesso'
     else
       @modality = Modality.find(params[:id])
-      flash.now[:notice] = 'Não foi possível atualizar o cadastro'
+      flash.now[:alert] = 'Não foi possível atualizar o cadastro'
       render 'edit'
     end
   end
@@ -44,7 +44,7 @@ class PricesByDistancesController < ApplicationController
 
   def check_user
     if !current_user.admin?
-      return redirect_to root_path, notice: 'Apenas administradores podem realizar esta ação'
+      return redirect_to root_path, alert: 'Apenas administradores podem realizar esta ação'
     end
   end
 

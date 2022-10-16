@@ -11,7 +11,7 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.integer :height
       t.string :receiver_name
       t.string :code
-      t.integer :status, default: 0
+      t.integer :status, default: 10
 
       t.timestamps
     end

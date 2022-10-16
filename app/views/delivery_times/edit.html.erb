@@ -1,3 +1,4 @@
+<h2>Editar <%=DeliveryTime.model_name.human %></h2>
 <% if(@delivery_time.errors.any?) %>
 	<div class="alert alert-danger" role="alert">
 		<p> A validação falhou: </p>
@@ -8,6 +9,4 @@
 		</ul>
 	</div>
 <% end %> 
-
-<h2>Cadastrar <%=DeliveryTime.model_name.human %></h2>
 <%= render 'form'%>

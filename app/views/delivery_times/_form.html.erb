@@ -1,0 +1,14 @@
+<%= bootstrap_form_with(model: @delivery_time, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |form| %>
+	<div>
+		<%= form.text_field :distance_between, required: true %>
+	</div>
+	<div>
+		<%= form.text_field :hours, required: true %>
+	</div>
+	<div>
+		<%= form.hidden_field :modality_id, :value => @modality.id %>
+	</div>
+  <div> 
+		<%= form.submit 'Enviar', class: "btn btn-primary" %>
+	</div>
+<% end %>

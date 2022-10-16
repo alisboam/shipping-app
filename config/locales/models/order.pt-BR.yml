@@ -1,4 +1,7 @@
 pt-BR:
+  pending: 'Pendente'
+  on_going: 'Iniciada'
+  closed: 'Encerrada'
   activerecord:
     models:
       order: 'Ordem de Serviço'
@@ -14,4 +17,10 @@ pt-BR:
         width: 'Largura da Carga' 
         height: 'Altura da Carga' 
         code: 'Código da OS'
-        
+        estimated_delivery_date: 'Data prevista de entrega'
+        delivery_price: 'Preço Entrega'
+        modality_id: 'Modalidade Escolhida'
+        vehicle_id: 'Informações do Veículo'
+        delay_reason: 'Motivo do atraso'
+        delivery_date: 'Data de entrega'
+      

@@ -26,7 +26,7 @@
 		<%= form.text_field :capacity, required: true %>
 	</div>
 	<div>
-		<%= form.select(:status, @select_status) %>
+		<%= form.select :status, [["Ativo", 'active'], ["Em Manutenção", 'maintenance']], { wrapper: { class: 'has-warning', data: { foo: 'bar' } } }, { class: "selectpicker" } %>
 	</div>
 	<div>
 		<%= form.hidden_field :modality_id, :value => @modality.id %>

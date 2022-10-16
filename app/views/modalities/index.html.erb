@@ -1,5 +1,5 @@
-
 <h2>Todos as Modalidades</h2>
+<section>
 <% if @modalities.any? %>
   <div class="table-responsive">
     <table class="table">
@@ -12,9 +12,6 @@
 					<th><%= Modality.human_attribute_name(:max_weight) %></th>
 					<th><%= Modality.human_attribute_name(:tax) %></th>
 					<th><%= Modality.human_attribute_name(:status) %></th>
-					<% if current_user.admin? %>
-					<th>Adicionar Veículo</th>
-					<% end %>
 				</tr>
 			</thead>
 			<% @modalities.each do |modality| %>
@@ -26,19 +23,16 @@
 					<td><%= modality.min_weight %></td>
 					<td><%= modality.max_weight %></td>
 					<td><%= modality.tax %></td>
-					<td><%= modality.status %></td>
-					<% if current_user.admin? %>
-						<th><%=link_to('Adicionar Veículos', modality_path(modality.id), class: "btn btn-success") %></th>
-					<% end %>
+					<td><%= I18n.t(modality.status) %></td>
 					</tr>
 				</tbody>
 			<% end %>
     </table>
 <% else %>
-  <span> 'Não existem modalidades cadastradas' </span>
+  <span class="warning"> 'Não existem modalidades cadastradas' </span>
 <% end %>
 <div>
-
+</section>
 <% if user_signed_in? and current_user.admin? %>
       <%=link_to('Cadastrar Modalidade',  new_modality_path, class: "btn btn-success") %>
 <% end %>

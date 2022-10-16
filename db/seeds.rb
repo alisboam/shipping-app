@@ -16,12 +16,12 @@ Modality.create!(name: 'Van', min_weight: 51, max_weight: 1000, min_distance: 10
 Modality.create!(name: 'Caminhão', min_weight: 1001, max_weight: 20000, min_distance: 102, max_distance: 2000, tax: 5000)
 Modality.create!(name: 'Caminhonete', min_weight: 1001, max_weight: 20000, min_distance: 102, max_distance: 2000, tax: 8000)
 
-Vehicle.create!(license_plate: 'ABC1234', brand:'Honda', model:'moto', year: 2015, capacity: 40, status:'ativo', modality_id: 1)
-Vehicle.create!(license_plate: 'ZZZ1234', brand:'Caloy', model:'bike', year: 2015, capacity: 40, status:'ativo', modality_id: 2)
-Vehicle.create!(license_plate: 'BCD2222', brand:'Toyota', model:'KOMBI', year: 2018, capacity: 2000, status:'ativo', modality_id: 3)
-Vehicle.create!(license_plate: 'XXX2222', brand:'Ford', model:'Van', year: 2007, capacity: 2000, status:'ativo', modality_id: 4)
-Vehicle.create!(license_plate: 'FGH1234', brand:'Mercedes', model:'Caminhão', year: 2020, capacity: 20000, status:'ativo', modality_id: 5)
-Vehicle.create!(license_plate: 'YYY1234', brand:'Hynday', model:'Caminhonete', year: 2013, capacity: 20000, status:'ativo', modality_id: 6)
+Vehicle.create!(license_plate: 'ABC1234', brand:'Honda', model:'moto', year: 2015, capacity: 40, modality_id: 1)
+Vehicle.create!(license_plate: 'ZZZ1234', brand:'Caloy', model:'bike', year: 2015, capacity: 40, modality_id: 2)
+Vehicle.create!(license_plate: 'BCD2222', brand:'Toyota', model:'KOMBI', year: 2018, capacity: 2000, modality_id: 3)
+Vehicle.create!(license_plate: 'XXX2222', brand:'Ford', model:'Van', year: 2007, capacity: 2000, modality_id: 4)
+Vehicle.create!(license_plate: 'FGH1234', brand:'Mercedes', model:'Caminhão', year: 2020, capacity: 20000, modality_id: 5)
+Vehicle.create!(license_plate: 'YYY1234', brand:'Hynday', model:'Caminhonete', year: 2013, capacity: 20000, modality_id: 6)
 
 
 
@@ -62,15 +62,46 @@ PricesByWeight.create!(min_weight: 2001, max_weight: 200000, price: 10, modality
 PricesByWeight.create!(min_weight: 200, max_weight: 2000, price: 10, modality_id: 6)
 PricesByWeight.create!(min_weight: 2001, max_weight: 200000, price: 10, modality_id: 6)
 
-DeliveryTime.create!(distance_between: 100, hours: 24)
-DeliveryTime.create!(distance_between: 200, hours: 48)
-DeliveryTime.create!(distance_between: 300, hours: 72)
+DeliveryTime.create!(distance_between: 100, hours: 24, modality_id: 1)
+DeliveryTime.create!(distance_between: 200, hours: 48, modality_id: 1)
+DeliveryTime.create!(distance_between: 300, hours: 48, modality_id: 1)
+
+DeliveryTime.create!(distance_between: 100, hours: 10, modality_id: 2)
+DeliveryTime.create!(distance_between: 200, hours: 40, modality_id: 2)
+DeliveryTime.create!(distance_between: 300, hours: 48, modality_id: 2)
+
+DeliveryTime.create!(distance_between: 100, hours: 24, modality_id: 3)
+DeliveryTime.create!(distance_between: 200, hours: 30, modality_id: 3)
+DeliveryTime.create!(distance_between: 400, hours: 72, modality_id: 3)
+
+DeliveryTime.create!(distance_between: 100, hours: 24, modality_id: 4)
+DeliveryTime.create!(distance_between: 200, hours: 30, modality_id: 4)
+DeliveryTime.create!(distance_between: 700, hours: 120, modality_id: 4)
+
+DeliveryTime.create!(distance_between: 100, hours: 24, modality_id: 5)
+DeliveryTime.create!(distance_between: 200, hours: 48, modality_id: 5)
+DeliveryTime.create!(distance_between: 500, hours: 120, modality_id: 5)
+
+DeliveryTime.create!(distance_between: 100, hours: 48, modality_id: 6)
+DeliveryTime.create!(distance_between: 200, hours: 120, modality_id: 6)
+DeliveryTime.create!(distance_between: 1000, hours: 168, modality_id: 6)
+
+
+
+
 
 Order.create!(sender_name: 'Magalu', sender_address: 'Rua Joaquim, 34, São Paulo', receiver_name: 'Jane Doe', receiver_address: 'Rua Patati, 25, São Paulo', distance_between: 200, 
               product_code: 'X356-8PQ', weight: 8000, width: 70, height: 45)
 
 Order.create!(sender_name: 'Americanas', sender_address: 'Rua Joaquim, 34, São Paulo', receiver_name: 'John Doe', receiver_address: 'Rua Manuel, São Paulo', distance_between: 30, 
               product_code: 'L325-8XX', weight: 10, width: 70, height: 20)
+
+Order.create!(sender_name: 'C&A', sender_address: 'Rua Joaquim, 34, São Paulo', receiver_name: 'John Doe', receiver_address: 'Rua Manuel, São Paulo', distance_between: 30, 
+              product_code: 'L325-8XX', weight: 10, width: 70, height: 20, modality_id: 2, status: 'on_going', delivery_price:2600, vehicle_id: 1, estimated_delivery_date: Date.today + 3)
+
+Order.create!(sender_name: 'Riachuelo', sender_address: 'Rua Joaquim, 34, São Paulo', receiver_name: 'Maria', receiver_address: 'Rua Manuel, São Paulo', distance_between: 30, 
+              product_code: 'L325-8XX', weight: 10, width: 70, height: 20, modality_id: 2, status: 'on_going', delivery_price:2600, vehicle_id: 1, estimated_delivery_date: 1.day.ago)
+
 
 
 

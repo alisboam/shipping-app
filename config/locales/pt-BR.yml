@@ -1,5 +1,9 @@
 pt-BR:
   hello: 'Olá mundo'
-  found: 
-    one: 'encontrado'
-    other: 'encontrados'
+  activerecord:
+    attributes:
+      user/role:
+        admin: "Administrador"
+        user: "Usuário"
+      
+        

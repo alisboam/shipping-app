@@ -1,56 +1,60 @@
 <h2><%=Order.model_name.human %>: <%= @order.code %></h2>
-<div class="table-responsive">
-<table class="table">
-  <thead>
-    <tr>
-      <th><%= Order.human_attribute_name(:code) %></th>
-      <th><%= Order.human_attribute_name(:sender_name) %></th>
-      <th><%= Order.human_attribute_name(:sender_address) %></th>
-      <th><%= Order.human_attribute_name(:receiver_name) %></th>
-      <th><%= Order.human_attribute_name(:receiver_address) %></th>
-      <th class="col-lg-1"><%= Order.human_attribute_name(:distance_between) %></th>
-      <th><%= Order.human_attribute_name(:product_code) %></th>
-      <th><%= Order.human_attribute_name(:weight) %></th>
-      <th><%= Order.human_attribute_name(:width) %></th>
-      <th><%= Order.human_attribute_name(:height) %></th>
-      <th><%= Order.human_attribute_name(:status) %></th>
-    </tr>
-  </thead>
-    <tbody>
+<section>
+  <div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= @order.code %></td>
-        <td><%= @order.sender_name %></td>
-        <td><%= @order.sender_address %></td>
-        <td><%= @order.receiver_name%></td>
-        <td><%= @order.receiver_address %></td>
-        <td><%= @order.distance_between %></td>
-        <td><%= @order.product_code %></td>
-        <td><%= @order.weight %></td>
-        <td><%= @order.width %></td>
-        <td><%= @order.height %></td>
-        <td><%= @order.status %></td>
+        <th><%= Order.human_attribute_name(:code) %></th>
+        <th><%= Order.human_attribute_name(:sender_name) %></th>
+        <th><%= Order.human_attribute_name(:sender_address) %></th>
+        <th><%= Order.human_attribute_name(:receiver_name) %></th>
+        <th><%= Order.human_attribute_name(:receiver_address) %></th>
+        <th class="col-lg-1"><%= Order.human_attribute_name(:distance_between) %></th>
+        <th><%= Order.human_attribute_name(:product_code) %></th>
+        <th class="col-lg-1"><%= Order.human_attribute_name(:weight) %></th>
+        <th class="col-lg-1"><%= Order.human_attribute_name(:width) %></th>
+        <th class="col-lg-1"> <%= Order.human_attribute_name(:height) %></th>
+        <th><%= Order.human_attribute_name(:status) %></th>
       </tr>
-    </tbody>
-</table>
-<div>
-
-<h3> Modalidades que atendem: </h3>
-
-<% if @modality.any? %>
-  <% @modality.each do |m| %>
-    <%= m.calculate_price(@order) %>
-    <%= @delivery_time %>
-
+    </thead>
+      <tbody>
+        <tr>
+          <td><%= @order.code %></td>
+          <td><%= @order.sender_name %></td>
+          <td><%= @order.sender_address %></td>
+          <td><%= @order.receiver_name%></td>
+          <td><%= @order.receiver_address %></td>
+          <td><%= @order.distance_between %></td>
+          <td><%= @order.product_code %></td>
+          <td><%= @order.weight %></td>
+          <td><%= @order.width %></td>
+          <td><%= @order.height %></td>
+          <td><%= I18n.t(@order.status) %></td>
+        </tr>
+      </tbody>
+  </table>
+  <div>
+</section>
+<section>
+  <% if @order.status == 'pending'%>
+    <h3> Selecione a modalidade de entrega: </h3>
+    <% if @modalities.any? %>
+      <%= bootstrap_form_with(model: @order) do |f| %>
+        <% @modalities.each do |m| %>
+          <%= f.radio_button :modality_id, m.id, :label => "#{m.name} - Preço: #{number_to_currency(m.calculate_price(@order) / 100, unit: "R$", separator: ",", delimiter: "", format: "%u %n")} - Prazo: #{m.find_delivery_time(@order).hours} horas" %>
+        <% end %>
+        <div> 
+          <%= f.submit 'Iniciar OS', class: "btn btn-success" %>
+        </div>
+      <% end %>
+    <% else %>
+      <span class="warning"> Não existem modalidades que atendam a este pedido</span>
+    <% end %>
+  <% else %>
+    <%= render 'delivery_details'%>
   <% end %>
-  <%= bootstrap_form_with(model: @order) do |f| %>
-    <%= f.collection_radio_buttons :name, @modality, :id, :name %>
-  <div> 
-		<%= f.submit 'Enviar', class: "btn btn-success" %>
-	</div>
+
+  <% if @order.status == 'on_going'  %>
+    <%= button_to('Encerrar OS', close_order_path(@order.id), class: "btn btn-warning")%>
   <% end %>
-<% else %>
-  <span> 'Não existem modalidades que atendam a este pedido'</span>
-<% end %>
-
-
-
+</section>

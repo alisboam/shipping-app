@@ -7,6 +7,7 @@
 	</div>
 	<div>
 		<%= form.text_field :price, required: true %>
+		<%= form.text_field :price, help: 'o valor deve ser informado em centavos' %>
 	</div>
 	<div>
 		<%= form.hidden_field :modality_id, :value => @modality.id %>

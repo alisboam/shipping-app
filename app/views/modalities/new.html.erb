@@ -18,6 +18,7 @@
 	</div>
 	<div>
 		<%= form.text_field :tax, required: true %>
+		<%= form.text_field :taxa, help: 'o valor deve ser informado em centavos' %>
 	</div>
   <div> 
 		<%= form.submit 'Enviar', class: "btn btn-primary" %>

@@ -1,6 +1,15 @@
 <h2>Todos os <%=Vehicle.model_name.human %></h2>
 
 <div class="table-responsive">
+  <%= bootstrap_form_with(controller: 'vehicles', method: 'GET', layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-2") do |form| %>
+    <div>
+      <%= form.text_field :license_plate, required: true %>
+    </div>
+    <div> 
+      <%= form.submit 'Encontrar', class: "btn btn-success" %>
+    </div>
+  <% end %>
+
   <% if @vehicles.any? %>
     <%= render 'index' %>
   <% else %>

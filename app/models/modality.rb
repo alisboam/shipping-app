@@ -6,6 +6,8 @@ class Modality < ApplicationRecord
   
   enum status: { active: 10, inactive: 20 }, _default: 10 
 
+  validates :min_distance, :max_distance, :min_weight, :max_weight, :tax, numericality: { only_integer: true, greater_than_or_equal_to:0 }
+
   def self.search_modality_fit(order)
     Modality.where("(min_distance <= :distance and max_distance >= :distance) AND (min_weight <= :weight and max_weight >= :weight) and status = :status",
              { distance: order.distance_between, weight: order.weight, status: Modality.statuses[:active] })

@@ -2,7 +2,11 @@ class VehiclesController < ApplicationController
   before_action :set_check_user, only: [:new, :create, :edit, :update]
 
   def index
-    @vehicles = Vehicle.all
+    if params[:license_plate]
+      @vehicles = Vehicle.where(license_plate: params[:license_plate])
+    else
+      @vehicles = Vehicle.all
+    end
   end
 
   def new

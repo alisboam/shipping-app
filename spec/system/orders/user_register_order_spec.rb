@@ -36,6 +36,7 @@ describe 'usuário registra ordem de serviço' do
     expect(page).to have_field 'Largura da Carga'
     expect(page).to have_field 'Altura da Carga'
   end
+
   it 'com sucesso' do
     user = User.create!(name: 'João', email: 'joao@sistemadefrete.com.br', password: 'password', role: 'admin')
     allow(SecureRandom).to receive(:alphanumeric).and_return('ABCD-0123456789')
@@ -71,7 +72,7 @@ describe 'usuário registra ordem de serviço' do
     expect(page).to have_css('th', text: 'Código do Produto') 
     expect(page).to have_css('td', text: 'X356-8PQ')
     expect(page).to have_css('th', text: 'Status') 
-    expect(page).to have_css('td', text: 'pendente')
+    expect(page).to have_css('td', text: 'Pendente')
   end
 
   it 'com dados em branco' do
@@ -131,9 +132,9 @@ describe 'usuário registra ordem de serviço' do
     fill_in 'Altura da Carga', with: 'cd'
     click_on 'Enviar'
 
-    expect(page).to have_content 'Distância de Entrega não pode ficar em branco'
-    expect(page).to have_content 'Peso da Carga não é um número'
-    expect(page).to have_content 'Largura da Carga não é um número'
+    expect(page).to have_content 'Não foi possível gerar a OS'
+    expect(page).to have_content 'Peso da Carga deve ser maior que 0'
+    expect(page).to have_content 'Largura da Carga deve ser maior que 0'
     expect(page).to have_content 'Altura da Carga não é um número'
     expect(page).to have_content 'Distância de Entrega não é um número'
   end
@@ -174,6 +175,6 @@ describe 'usuário registra ordem de serviço' do
     expect(page).to have_css('th', text: 'Altura da Carga') 
     expect(page).to have_css('td', text: '45')
     expect(page).to have_css('th', text: 'Status') 
-    expect(page).to have_css('td', text: 'pendente')
+    expect(page).to have_css('td', text: 'Pendente')
   end
 end

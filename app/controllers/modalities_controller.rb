@@ -19,7 +19,7 @@ class ModalitiesController < ApplicationController
   if @modality.valid?
     redirect_to modality_path(@modality.id), notice: "Modalidade #{@modality.name} cadastrada com sucesso"
   else
-    flash.now[:notice] = 'Não foi possível cadastrar a modalidade'
+    flash.now[:alert] = 'Não foi possível cadastrar a modalidade'
     render 'new'
   end
  end
@@ -31,7 +31,7 @@ class ModalitiesController < ApplicationController
   
   def set_check_user
     if !current_user.admin?
-      return redirect_to root_path, notice: 'Você não tem permissão para realizar esta ação'
+      return redirect_to root_path, alert: 'Você não tem permissão para realizar esta ação'
     end
   end
 

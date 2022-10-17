@@ -32,7 +32,7 @@ describe 'usuário encerra ordem de serviço' do
     expect(page).to have_css('dt', text: 'Preço Entrega')
     expect(page).to have_css('dd', text: 'R$ 26,00')
     expect(page).to have_css('dt', text: 'Data prevista de entrega')
-    expect(page).to have_css('dd', text:  I18n.l(Date.today + 3) )
+    expect(page).to have_css('dd', text:  I18n.l(Date.today + 3))
     expect(page).to have_css('dt', text: 'Data de entrega')
     expect(page).to have_css('dd', text:  I18n.l(Date.today))
     expect(page).to have_css('dt', text: 'Código de Rastreio')

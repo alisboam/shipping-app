@@ -26,15 +26,15 @@
         </tbody>
     </table>
     <% if current_user.admin? %>
-      <div>
-        <%=link_to('Adicionar Veículos', new_vehicle_path(:id => @modality.id), class: "btn btn-success") %>
-        <%=link_to('Adicionar Preço por Distância', new_prices_by_distance_path(:id => @modality.id), class: "btn btn-success") %>
-        <%=link_to('Adicionar Preço por Peso', new_prices_by_weight_path(:id => @modality.id), class: "btn btn-success") %>
-        <%=link_to('Cadastrar Prazo', new_delivery_time_path(:id => @modality.id), class: "btn btn-success") %>
-        <%= button_to('Desativar modalidade', inactivate_modality_path(@modality.id), class: "btn btn-danger")%>
+      <div class="d-flex align-content-start flex-wrap m-2">
+        <%=link_to('Adicionar Veículos', new_vehicle_path(:id => @modality.id), class: "btn btn-success m-2") %>
+        <%=link_to('Adicionar Preço por Distância', new_prices_by_distance_path(:id => @modality.id), class: "btn btn-success m-2") %>
+        <%=link_to('Adicionar Preço por Peso', new_prices_by_weight_path(:id => @modality.id), class: "btn btn-success m-2") %>
+        <%=link_to('Cadastrar Prazo', new_delivery_time_path(:id => @modality.id), class: "btn btn-success m-2") %>
+        <%= button_to('Desativar modalidade', inactivate_modality_path(@modality.id), class: "btn btn-danger m-2")%>
       </div>
     <% end %>
-  <div>
+  </div>
 </section>
 <section>
   <h3><%=PricesByDistance.model_name.human %></h3>

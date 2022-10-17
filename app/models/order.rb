@@ -27,7 +27,7 @@ class Order < ApplicationRecord
 
   def close_order(delay_reason = nil)
     self.status = :closed
-    self.delivery_date = DateTime.now
+    self.delivery_date = Date.today
     self.delay_reason = delay_reason
     Vehicle.find(self.vehicle_id).return_vehicle
     self.save!

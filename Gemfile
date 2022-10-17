@@ -48,6 +48,7 @@ gem 'devise'
 gem 'rails-i18n'
 
 
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -59,6 +60,7 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'simplecov', require: false, group: :test
 end
 
 group :development do

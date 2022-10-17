@@ -55,6 +55,19 @@ Login de administrador:
 email: joao@sistemadefrete.com.br
 senha: password
 
+Para ver a cobertura de testes, no diretório do projeto:
+
+  Terminal Mac:
+  ```
+   open coverage/index.html
+   ```
+
+   Terminal debian/ubuntu:
+
+   ```
+   xdg-open coverage/index.html
+   ```
+
 ##### Melhorias de projeto
 
 - [ ] Validação de intervalos já cadastrados

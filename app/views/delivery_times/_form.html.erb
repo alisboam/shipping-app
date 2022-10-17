@@ -3,7 +3,7 @@
 		<%= form.text_field :distance_between, required: true %>
 	</div>
 	<div>
-		<%= form.text_field :hours, required: true %>
+		<%= form.text_field :hours, required: true, help: 'informar o prazo em horas' %>
 	</div>
 	<div>
 		<%= form.hidden_field :modality_id, :value => @modality.id %>
